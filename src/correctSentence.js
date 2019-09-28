@@ -17,10 +17,8 @@ correctSentence("Greetings, friends") == "Greetings, friends."
 correctSentence("Greetings, friends.") == "Greetings, friends."
  */
 
-export default
-
-function correctSentence(text) {
-  if (typeof(text) !== 'string')
+export default function correctSentence(text) {
+  if (typeof (text) !== 'string')
     return false
   let sentence = text.charAt(0).toUpperCase() + text.slice(1)
   if (sentence.slice(-1) !== '.')

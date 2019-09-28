@@ -6,14 +6,12 @@
  * и класса (например, отрицательные числа)
  */
 
-export default
-
-function convertBytesToHuman(bytes) {
-  if (typeof(bytes) !== 'number' || bytes < 0)
+export default function convertBytesToHuman(bytes) {
+  if (typeof (bytes) !== 'number' || bytes < 0)
     return false
-  const PREFIX = "KMGTPEZY" // Kilobyte, Megabyte, ...
+  const PREFIX = 'KMGTPEZY' // Kilobyte, Megabyte, ...
   const BASE = 1024
-  if (bytes < BASE) 
+  if (bytes < BASE)
     return `${bytes} B`
   const power = Math.floor(Math.log(bytes) / Math.log(BASE))
   const result = (bytes / Math.pow(BASE, power)).toFixed(3)

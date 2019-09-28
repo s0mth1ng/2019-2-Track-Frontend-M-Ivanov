@@ -24,8 +24,6 @@ nonUniqueElements([5, 5, 5, 5, 5]) == [5, 5, 5, 5, 5]
 nonUniqueElements([10, 9, 10, 10, 9, 8]) == [10, 9, 10, 10, 9]
  */
 
-export default
-
-function nonUniqueElements(data) {
+export default function nonUniqueElements(data) {
   return data.filter(number => data.indexOf(number) !== data.lastIndexOf(number))
 }
