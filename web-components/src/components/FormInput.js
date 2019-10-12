@@ -31,6 +31,10 @@ class FormInput extends HTMLElement {
     return ['name', 'value', 'placeholder', 'disabled'];
   }
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.$input.setAttribute(name, newValue);
+  }
+
   get value() {
     return this.$input.value;
   }
