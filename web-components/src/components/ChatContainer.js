@@ -60,22 +60,20 @@ template.innerHTML = `<style>
 class ChatContainer extends HTMLElement {
   constructor() {
     super();
-    this.cnt = 0;
     this._shadowRoot = this.attachShadow({ mode: 'open' });
     this._shadowRoot.appendChild(template.content.cloneNode(true));
     this.$form = this._shadowRoot.querySelector('form');
     this.$input = this._shadowRoot.querySelector('form-input');
     this.$messages_container = this._shadowRoot.querySelector('.message-container');
+    
+    this.$messages = JSON.parse(localStorage.getItem('message-storage')) || [];
 
-    for (let i = 0; i < localStorage.length; ++i) {
-      if (localStorage.getItem(localStorage.key(i)) !== 'INFO') {
-        const obj = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        const message = document.createElement('single-message');
-        message.content = obj.content;
-        message.time = obj.time;
-        message.classList.add('message', 'sent');
-        this.$messages_container.insertBefore(message, this.$messages_container.firstChild);
-      }
+    for (let i = 0; i < this.$messages.length; ++i) {
+      const message = document.createElement('single-message');
+      message.content = this.$messages[i].content;
+      message.time = this.$messages[i].time;
+      message.classList.add('message', 'sent');
+      this.$messages_container.insertBefore(message, this.$messages_container.firstChild);
     }
 
     this.$form.addEventListener('submit', this._onSubmit.bind(this));
@@ -93,10 +91,14 @@ class ChatContainer extends HTMLElement {
         hour: '2-digit',
         minute: '2-digit'
       });
+      this.$messages.push({
+        'content': message.content,
+        'time': message.time
+      });
       this.$messages_container.insertBefore(message, this.$messages_container.firstChild);
-      localStorage.setItem(Date.now().toString(), JSON.stringify({ content: message.content, time: message.time }));
+      localStorage.removeItem('message-storage');
+      localStorage.setItem('message-storage', JSON.stringify(this.$messages));
       this.$input.clear();
-      this.cnt++;
     }
   }
 
