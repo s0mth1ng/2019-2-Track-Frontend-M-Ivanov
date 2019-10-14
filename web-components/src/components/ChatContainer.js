@@ -63,8 +63,6 @@ class ChatContainer extends HTMLElement {
     super();
     this._shadowRoot = this.attachShadow({mode: 'open'});
     this._shadowRoot.appendChild(template.content.cloneNode(true));
-    this.$chat_header = this._shadowRoot.querySelector('chat-header');
-    this.$chat_header.name = "Maxim Ivanov";
     this.$form = this._shadowRoot.querySelector('form');
     this.$input = this._shadowRoot.querySelector('form-input');
     this.$messages_container = this._shadowRoot.querySelector('.message-container');

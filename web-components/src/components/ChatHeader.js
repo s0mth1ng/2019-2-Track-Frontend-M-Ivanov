@@ -35,11 +35,11 @@ template.innerHTML = `<style>
 <div class="container">
   <div class="button">
     <a href="https://vk.com/">
-      <img src="../../back.png">
+      <img src="../../build/images/back.png" alt="Back button">
     </a>
   </div>
   <div class="avatar">
-    <img src="../../avatar.png">
+    <img src="../../build/images/avatar.png" alt="Profile image">
   </div>
   <div class="account">
     <div class="name">John Doe</div>
