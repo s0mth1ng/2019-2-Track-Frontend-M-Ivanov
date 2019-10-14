@@ -4,9 +4,9 @@
 const template = document.createElement('template');
 template.innerHTML = `<style>
 
-  .message-conteiner::-webkit-scrollbar {
-    width: 2px;
-    background-color: darkgrey;
+  chat-header {
+    display: flex;
+    flex: 1 1 7%;
   }
 
   form {
@@ -18,7 +18,7 @@ template.innerHTML = `<style>
   form-input {
     flex: 0 0 auto;
   }
-  
+
   .message {
     position: relative;
     max-width: 75%;
@@ -26,13 +26,13 @@ template.innerHTML = `<style>
     margin-top: 10px;
     border-radius: .8em;
   }
-  
-  .recieved {    
+
+  .recieved {
     margin-left: 5px;
     align-self: flex-start;
     background: white;
   }
-  
+
   .sent {
     margin-right: 5px;
     align-self: flex-end;
@@ -52,6 +52,7 @@ template.innerHTML = `<style>
   }
 </style>
 <form>
+  <chat-header></chat-header>
   <div class='message-container'></div>
   <form-input name="message-text" placeholder="Введите сообщение"></form-input>
 </form>
@@ -60,12 +61,14 @@ template.innerHTML = `<style>
 class ChatContainer extends HTMLElement {
   constructor() {
     super();
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
+    this._shadowRoot = this.attachShadow({mode: 'open'});
     this._shadowRoot.appendChild(template.content.cloneNode(true));
+    this.$chat_header = this._shadowRoot.querySelector('chat-header');
+    this.$chat_header.name = "Maxim Ivanov";
     this.$form = this._shadowRoot.querySelector('form');
     this.$input = this._shadowRoot.querySelector('form-input');
     this.$messages_container = this._shadowRoot.querySelector('.message-container');
-    
+
     this.$messages = JSON.parse(localStorage.getItem('message-storage')) || [];
 
     for (let i = 0; i < this.$messages.length; ++i) {
