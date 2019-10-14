@@ -5,44 +5,62 @@ template.innerHTML = `<style>
   .container {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding: 5px;
     border: 1px solid darkgrey;
     background: #4F6EA3;
   }
+
+  .avatar {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+  }
+
+  .options-button, .back-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   
   .account {
     display: flex;
-    flex-direction: column;
-    margin-left: 20px;
+    flex-direction: row;
+    align-items: center;
   }
 
   .name {
+    line-height: 20px;
     color: white;
   }
-  
-  .avatar {
-    margin-left: 20px;
+
+  .status {
+    line-height: 15px;
+    font-size: medium;
+    color: greenyellow;
   }
 
   img {
-    padding-top: 7px;
-    width: 35px;
-    border-radius: 50%;
+    height: 40px;
   }
+
 </style>
 <div class="container">
-  <div class="button">
-    <a href="https://vk.com/">
-      <img src="../../build/images/back.png" alt="Back button">
-    </a>
-  </div>
-  <div class="avatar">
-    <img src="../../build/images/avatar.png" alt="Profile image">
+  <div class="back-button">
+    <img src="../../images/back.png" alt="Back button">
   </div>
   <div class="account">
-    <div class="name">John Doe</div>
+    <div class="avatar">
+      <img src="../../images/avatar.png" alt="Profile image">
+    </div>
+    <div class="info">
+      <div class="name">John Doe</div>
+      <div class="status">online</div>
+    </div>
+  </div>
+  <div class="options-button">
+    <img src="../../images/options.png" alt="Options button">
   </div>
 </div>
 `;

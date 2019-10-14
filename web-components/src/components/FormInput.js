@@ -7,12 +7,35 @@ template.innerHTML = `<style>
     height: 40px;
     padding: 10px;
     border: 1px solid darkgrey;
+    border-radius: 35px;
     outline: none;
     width: calc(100% - 22px);
   }
 
+  .container {
+    padding-right: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .attach {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  img {
+    transform: rotate(90deg);
+    height: 40px;
+  }
+
 </style>
-<input type="text">
+<div class="container">
+  <div class="attach">
+    <img src="../images/attach.png">
+  </div>
+  <input type="text">
+</div>
 `;
 
 class FormInput extends HTMLElement {
