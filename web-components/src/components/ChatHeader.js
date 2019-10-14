@@ -48,11 +48,11 @@ template.innerHTML = `<style>
 </style>
 <div class="container">
   <div class="back-button">
-    <img src="../../images/back.png" alt="Back button">
+    <img src="images/back.png" alt="Back button">
   </div>
   <div class="account">
     <div class="avatar">
-      <img src="../../images/avatar.png" alt="Profile image">
+      <img src="images/avatar.png" alt="Profile image">
     </div>
     <div class="info">
       <div class="name">John Doe</div>
@@ -60,7 +60,7 @@ template.innerHTML = `<style>
     </div>
   </div>
   <div class="options-button">
-    <img src="../../images/options.png" alt="Options button">
+    <img src="images/options.png" alt="Options button">
   </div>
 </div>
 `;

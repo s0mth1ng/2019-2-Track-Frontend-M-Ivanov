@@ -32,7 +32,7 @@ template.innerHTML = `<style>
 </style>
 <div class="container">
   <div class="attach">
-    <img src="../images/attach.png" alt="Attachment button">
+    <img src="images/attach.png" alt="Attachment button">
   </div>
   <input type="text">
 </div>

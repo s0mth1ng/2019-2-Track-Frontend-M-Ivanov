@@ -55,12 +55,6 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader',
-        ],
-      },
     ],
   },
   plugins: [
@@ -73,9 +67,8 @@ module.exports = {
     }),
     new CopyPlugin([
       {
-        from: '*/*',
-        to: '[1]-[2].[hash].[ext]',
-        test: /([^/]+)\/(.+)\.png$/,
+        from: '../images/',
+        to: 'images',
       },
     ]),
   ]
