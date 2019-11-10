@@ -58,12 +58,6 @@ class ChatList extends HTMLElement {
 
     this.$create.addEventListener('click', () => alert('Next time..'))
 
-    this.$lst_chats.sort((a, b) => {
-      if (Date.parse('1/1/1 ' + a.time) > Date.parse('1/1/1 ' + b.time))
-        return -1
-      return 1
-    })
-
     for (let i = 0; i < this.$lst_chats.length; ++i) {
       const chat = document.createElement('single-chat')
       chat.chat_id = i

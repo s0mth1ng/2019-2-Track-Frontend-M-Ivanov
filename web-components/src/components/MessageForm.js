@@ -68,6 +68,9 @@ class MessageForm extends HTMLElement {
     this.local_storage_name = 'message-storage-' + this.getAttribute('chat_id')
     this.$messages = JSON.parse(localStorage.getItem(this.local_storage_name)) || []
 
+    let lst_chats = JSON.parse(localStorage.getItem('chats-storage')) || []
+    this.$header.name = lst_chats[this.getAttribute('chat_id')].name
+    
     for (let i = 0; i < this.$messages.length; ++i) {
       const message = document.createElement('single-message')
       message.content = this.$messages[i].content
