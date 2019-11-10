@@ -2,13 +2,13 @@ const template = document.createElement('template')
 template.innerHTML = `<style>
   .avatar {
     padding: 7px;
-    height: 60px;
     width: 60px;
   }
 
   .chat {
     display: flex;
-    width: calc(100%-1px);
+    width: calc(100% - 2px);
+    align-items: center;
     border: 1px solid lightgray;
   }
 
@@ -16,26 +16,39 @@ template.innerHTML = `<style>
     width: 100%;
     height: auto;
   }
-  
+
   .status {
     display: flex;
     padding-right: 10px;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
   }
-  
+
   .last-message, .time {
     color: #555555;
   }
-  
+
+  .time {
+    font-size: small;
+  }
+
   .counter {
+    display: none;
     line-height: 25px;
-    font-size: medium;
+    font-size: small;
     padding: 2px 10px 2px 10px;
     border-radius: 2em;
     background: #D6E5FA;
   }
   
+  .read {
+    background-color: #4F6EA3;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+  }
+
   .content {
     padding-left: 10px;
     padding-bottom: 5px;
@@ -53,6 +66,7 @@ template.innerHTML = `<style>
   <div class="status">
     <div class="time"></div>
     <div class="counter"></div>
+    <div class="read"></div>
   </div>
 </div>
 `
@@ -65,6 +79,7 @@ class SingleChat extends HTMLElement {
     this.$avatar = this._shadowRoot.querySelector('.avatar')
     this.$time = this._shadowRoot.querySelector('.time')
     this.$counter = this._shadowRoot.querySelector('.counter')
+
     this.$name = this._shadowRoot.querySelector('.name')
     this.$last_message = this._shadowRoot.querySelector('.last-message')
   }

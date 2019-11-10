@@ -7,6 +7,7 @@ template.innerHTML = `<style>
   }
 
   form {
+    overflow: hidden;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -33,8 +34,64 @@ template.innerHTML = `<style>
   .sent {
     margin-right: 5px;
     align-self: flex-end;
-    background: #D6E5FA; /*#415DFF;*/
+    background: #D6E5FA;
   }
+
+  single-message {
+    animation-name: slideUp;
+    -webkit-animation-name: slideUp;
+
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+
+    animation-timing-function: ease;
+    -webkit-animation-timing-function: ease;
+
+    visibility: visible !important;
+  }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(100%);
+    }
+    50% {
+      transform: translateY(-8%);
+    }
+    65% {
+      transform: translateY(4%);
+    }
+    80% {
+      transform: translateY(-4%);
+    }
+    95% {
+      transform: translateY(2%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+
+  @-webkit-keyframes slideUp {
+    0% {
+      -webkit-transform: translateY(100%);
+    }
+    50% {
+      -webkit-transform: translateY(-8%);
+    }
+    65% {
+      -webkit-transform: translateY(4%);
+    }
+    80% {
+      -webkit-transform: translateY(-4%);
+    }
+    95% {
+      -webkit-transform: translateY(2%);
+    }
+    100% {
+      -webkit-transform: translateY(0%);
+    }
+  }
+
 
   .message-container {
     overflow-y: scroll;
@@ -68,9 +125,11 @@ class MessageForm extends HTMLElement {
     this.local_storage_name = 'message-storage-' + this.getAttribute('chat_id')
     this.$messages = JSON.parse(localStorage.getItem(this.local_storage_name)) || []
 
-    let lst_chats = JSON.parse(localStorage.getItem('chats-storage')) || []
+    let lst_chats = JSON.parse(localStorage.getItem('chats-storage')) ||
+      [{ 'chat_id': 0, 'counter': 0, 'name': 'John Doe', 'last_message': {'content': '', 'time': ''} },
+        { 'chat_id': 1, 'counter': 0, 'name': 'Anonymous', 'last_message': {'content': '', 'time': ''} }]
     this.$header.name = lst_chats[this.getAttribute('chat_id')].name
-    
+
     for (let i = 0; i < this.$messages.length; ++i) {
       const message = document.createElement('single-message')
       message.content = this.$messages[i].content
@@ -100,9 +159,12 @@ class MessageForm extends HTMLElement {
       })
       this.$messages_container.insertBefore(message, this.$messages_container.firstChild)
 
+
       localStorage.removeItem(this.local_storage_name)
       localStorage.setItem(this.local_storage_name, JSON.stringify(this.$messages))
-      let lst_chats = JSON.parse(localStorage.getItem('chats-storage')) || []
+      let lst_chats = JSON.parse(localStorage.getItem('chats-storage')) ||
+        [{ 'chat_id': 0, 'counter': 0, 'name': 'John Doe', 'last_message': {'content': '', 'time': ''} },
+          { 'chat_id': 1, 'counter': 0, 'name': 'Anonymous', 'last_message': {'content': '', 'time': ''} }]
       lst_chats[this.getAttribute('chat_id')].last_message = this.$messages[this.$messages.length - 1]
       localStorage.removeItem('chats-storage')
       localStorage.setItem('chats-storage', JSON.stringify(lst_chats))

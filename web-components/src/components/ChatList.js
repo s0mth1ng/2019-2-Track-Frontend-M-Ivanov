@@ -21,19 +21,27 @@ template.innerHTML = `<style>
   }
   
   img {
-    width: 40px;
-    height: 40px;
+    height: 30px;
+    width: 30px;
   }
-  
+
   .create {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     background-color: #4F6EA3;
-    position:fixed;
-    right: 50px;
+    position: fixed;
+    right: 30px;
     bottom: 30px;
     border-radius: 5em;
+  }
+
+  .create:hover {
+    -webkit-transition: all 0.3s ease;
+    background: #512da8;
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
   }
 </style>
 <form>
@@ -53,14 +61,16 @@ class ChatList extends HTMLElement {
     this.$header = this._shadowRoot.querySelector('chat-list-header')
     this.$chat_container = this._shadowRoot.querySelector('.chat-container')
     this.$create = this._shadowRoot.querySelector('.create')
-    this.$lst_chats = JSON.parse(localStorage.getItem('chats-storage')) || []
+    this.$lst_chats = JSON.parse(localStorage.getItem('chats-storage')) ||
+      [{ 'chat_id': 0, 'counter': 0, 'name': 'John Doe', 'last_message': {'content': '', 'time': ''} },
+        { 'chat_id': 1, 'counter': 0, 'name': 'Anonymous', 'last_message': {'content': '', 'time': ''} }]
     this.$chats = []
 
     this.$create.addEventListener('click', () => alert('Next time..'))
 
     for (let i = 0; i < this.$lst_chats.length; ++i) {
       const chat = document.createElement('single-chat')
-      chat.chat_id = i
+      chat.chat_id = this.$lst_chats[i].chat_id
       chat.counter = this.$lst_chats[i].counter
       chat.name = this.$lst_chats[i].name
       chat.last_message = this.$lst_chats[i].last_message.content

@@ -22,6 +22,14 @@ template.innerHTML = `<style>
     justify-content: center;
   }
   
+  .options-button:hover, .back-button:hover {
+    -webkit-transition: all 0.3s ease;
+    opacity: 0.6;
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  
   .account {
     display: flex;
     flex-direction: row;
@@ -40,7 +48,7 @@ template.innerHTML = `<style>
   }
 
   img {
-    height: 40px;
+    height: 35px;
   }
 
 </style>

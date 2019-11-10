@@ -12,6 +12,7 @@ import './components/HelloPage'
 const template = document.createElement('template')
 template.innerHTML = `<style>
   .container {
+    transition-timing-function: linear;
     height: 100%;
   }
 </style>

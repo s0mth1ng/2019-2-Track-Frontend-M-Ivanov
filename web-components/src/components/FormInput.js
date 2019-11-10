@@ -1,9 +1,9 @@
 const template = document.createElement('template')
 template.innerHTML = `<style>
   input {
-    font-size: x-large;
-    height: 40px;
-    padding: 10px;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
     border: 1px solid darkgrey;
     border-radius: 35px;
     outline: none;
@@ -17,14 +17,20 @@ template.innerHTML = `<style>
   }
   
   .attach {
+    margin-left: 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
   
+  .attach:hover {
+    -webkit-transition: all 0.5s ease;
+    transform: rotate(360deg);
+  }
+  
   img {
     transform: rotate(90deg);
-    height: 40px;
+    height: 30px;
   }
 
 </style>

@@ -4,25 +4,34 @@ template.innerHTML = `<style>
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: calc(100% - 12px);
-    height: 48px;
+    height: 35px;
     padding: 5px;
     border: 1px solid darkgrey;
     background: #4F6EA3;
   }
-  
+
   .app_name {
     color: white;
   }
-  
+
   .menu-button, .search-button {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
+  .menu-button:hover, .search-button:hover {
+    -webkit-transition: all 0.3s ease;
+    opacity: 0.6;
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
   img {
-    height: 40px;
+    height: 35px;
   }
 
 </style>
