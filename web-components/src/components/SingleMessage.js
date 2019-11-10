@@ -1,6 +1,4 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable semi */
-const template = document.createElement('template');
+const template = document.createElement('template')
 template.innerHTML = `<style>
   .time {
     margin-right: 5px;
@@ -17,33 +15,33 @@ template.innerHTML = `<style>
 </style>
 <div class="content"></div>
 <div class="time"></div>
-`;
+`
 
 class SingleMessage extends HTMLElement {
   constructor() {
-    super();
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._shadowRoot.appendChild(template.content.cloneNode(true));
-    this.$content = this._shadowRoot.querySelector('.content');
-    this.$time = this._shadowRoot.querySelector('.time');
+    super()
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._shadowRoot.appendChild(template.content.cloneNode(true))
+    this.$content = this._shadowRoot.querySelector('.content')
+    this.$time = this._shadowRoot.querySelector('.time')
   }
 
   set time(time) {
-    this.$time.innerText = time;
+    this.$time.innerText = time
   }
 
   set content(text) {
-    this.$content.innerText = text;
+    this.$content.innerText = text
   }
 
   get time() {
-    return this.$time.innerText;
+    return this.$time.innerText
   }
 
   get content() {
-    return this.$content.innerText;
+    return this.$content.innerText
   }
 
 }
 
-customElements.define('single-message', SingleMessage);
+customElements.define('single-message', SingleMessage)

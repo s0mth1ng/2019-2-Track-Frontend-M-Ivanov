@@ -1,6 +1,4 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable semi */
-const template = document.createElement('template');
+const template = document.createElement('template')
 template.innerHTML = `<style>
   input {
     font-size: x-large;
@@ -36,31 +34,31 @@ template.innerHTML = `<style>
   </div>
   <input type="text">
 </div>
-`;
+`
 
 class FormInput extends HTMLElement {
   constructor() {
-    super();
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._shadowRoot.appendChild(template.content.cloneNode(true));
-    this.$input = this.shadowRoot.querySelector('input');
+    super()
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._shadowRoot.appendChild(template.content.cloneNode(true))
+    this.$input = this.shadowRoot.querySelector('input')
   }
 
   clear() {
-    this.$input.value = '';
+    this.$input.value = ''
   }
 
   static get observedAttributes() {
-    return ['name', 'value', 'placeholder', 'disabled'];
+    return ['name', 'value', 'placeholder', 'disabled']
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    this.$input.setAttribute(name, newValue);
+    this.$input.setAttribute(name, newValue)
   }
 
   get value() {
-    return this.$input.value;
+    return this.$input.value
   }
 }
 
-customElements.define('form-input', FormInput);
+customElements.define('form-input', FormInput)
