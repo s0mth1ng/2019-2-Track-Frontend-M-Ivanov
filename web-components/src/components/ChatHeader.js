@@ -1,6 +1,4 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable semi */
-const template = document.createElement('template');
+const template = document.createElement('template')
 template.innerHTML = `<style>
   .container {
     display: flex;
@@ -24,6 +22,14 @@ template.innerHTML = `<style>
     justify-content: center;
   }
   
+  .options-button:hover, .back-button:hover {
+    -webkit-transition: all 0.3s ease;
+    opacity: 0.6;
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  
   .account {
     display: flex;
     flex-direction: row;
@@ -42,7 +48,7 @@ template.innerHTML = `<style>
   }
 
   img {
-    height: 40px;
+    height: 35px;
   }
 
 </style>
@@ -63,22 +69,31 @@ template.innerHTML = `<style>
     <img src="images/options.png" alt="Options button">
   </div>
 </div>
-`;
+`
 
 class ChatHeader extends HTMLElement {
   constructor() {
-    super();
-    this._shadowRoot = this.attachShadow({mode: 'open'});
-    this._shadowRoot.appendChild(template.content.cloneNode(true));
-    this.$button = this._shadowRoot.querySelector('.button');
-    this.$avatar = this._shadowRoot.querySelector('.avatar');
-    this.$name = this._shadowRoot.querySelector('.name');
+    super()
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._shadowRoot.appendChild(template.content.cloneNode(true))
+    this.$back_button = this._shadowRoot.querySelector('.back-button')
+    this.$options_button = this._shadowRoot.querySelector('.options-button')
+    this.$avatar = this._shadowRoot.querySelector('.avatar')
+    this.$name = this._shadowRoot.querySelector('.name')
   }
 
   set name(name) {
-    this.$name.innerText = name;
+    this.$name.innerText = name
+  }
+
+  get back_button() {
+    return this.$back_button
+  }
+
+  get options_button() {
+    return this.$options_button
   }
 
 }
 
-customElements.define('chat-header', ChatHeader);
+customElements.define('chat-header', ChatHeader)

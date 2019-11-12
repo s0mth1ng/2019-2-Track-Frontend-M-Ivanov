@@ -1,14 +1,14 @@
-'use strict';
+'use strict'
 
-const path = require('path');
+const path = require('path')
 
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin')
 
-const SRC_PATH = path.resolve(__dirname, 'src');
-const BUILD_PATH = path.resolve(__dirname, 'build');
+const SRC_PATH = path.resolve(__dirname, 'src')
+const BUILD_PATH = path.resolve(__dirname, 'build')
 
 module.exports = {
   context: SRC_PATH,
@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     path: BUILD_PATH,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     strictExportPresence: true,
@@ -29,7 +29,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              presets: ['@babel/preset-env'],
             },
           },
         ],
@@ -39,7 +39,7 @@ module.exports = {
         include: SRC_PATH,
         use: [
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
         ],
       },
@@ -63,7 +63,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       filename: 'index.html',
-      template: './index.html'
+      template: './index.html',
     }),
     new CopyPlugin([
       {
@@ -71,5 +71,5 @@ module.exports = {
         to: 'images',
       },
     ]),
-  ]
-};
+  ],
+}
