@@ -1,0 +1,62 @@
+.button {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 8vh;
+}
+
+.button img {
+  height: 5vh;
+}
+
+.profilePicture {
+  height: 5vh;
+}
+
+.button:hover {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  transform: scale(1.4);
+  opacity: 0.6;
+}
+
+.container {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 8vh;
+  padding: 5px;
+  background: #4f6ea3;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.account {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.name {
+  @import url('https://fonts.googleapis.com/css?family=Leckerli+One&display=swap');
+  font-family: 'Leckerli One', cursive;
+  font-size: large;
+  font-weight: bold;
+  color: white;
+}
+
+.status {
+  font-size: small;
+  color: greenyellow;
+}

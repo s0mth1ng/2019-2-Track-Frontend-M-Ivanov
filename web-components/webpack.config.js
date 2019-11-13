@@ -4,7 +4,6 @@ const path = require('path')
 
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
-const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
 
 const SRC_PATH = path.resolve(__dirname, 'src')
