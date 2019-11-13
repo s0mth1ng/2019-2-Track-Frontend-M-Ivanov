@@ -15,5 +15,6 @@ deploy:
   local_dir: build
   on:
     branch:
+      - hw5
       - master
       - devel
