@@ -1,11 +1,5 @@
 {
-	"extends": [
-		"airbnb",
-		"react-app",
-		"prettier",
-		"prettier/react",
-		"plugin:react/recommended"
-	],
+	"extends": ["airbnb", "react-app", "prettier", "prettier/react", "plugin:react/recommended"],
 	"root": true,
 	"plugins": ["import", "babel", "react", "prettier"],
 	"parser": "babel-eslint",
@@ -50,8 +44,6 @@
 		"import/first": 0,
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"no-tabs": ["error", { "allowIndentationTabs": true }],
-		"semi": ["error", "always"],
-		"quotes": ["error", "single"],
-		"no-mixed-spaces-and-tabs": "error"
+		"quotes": ["error", "single"]
 	}
 }
