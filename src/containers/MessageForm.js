@@ -68,6 +68,13 @@ export default function MessageForm(props) {
 		updateValue('')
 		pushMessagesToLS(newMessages)
 		messagesCounter += 1
+		setTimeout(scrollToBottom, 100)
+		scrollToBottom()
+	}
+
+	function scrollToBottom() {
+		const scrollDiv = document.getElementById('scrollDiv')
+		scrollDiv.scrollIntoView({ behavior: 'smooth' })
 	}
 
 	function onChange(e) {
@@ -76,8 +83,15 @@ export default function MessageForm(props) {
 
 	return (
 		<form onSubmit={submit} className={messageFormStyles.container}>
-			<div className={messageFormStyles.messageForm}>{messages}</div>
-			<Input onChange={onChange} value={value} />
+			<div className={messageFormStyles.messageForm}>
+				<div className={messageFormStyles.messageContainer}>
+					<div className={messageFormStyles.innerContainer}>
+						{messages}
+						<div id="scrollDiv" />
+					</div>
+				</div>
+				<Input onChange={onChange} value={value} />
+			</div>
 		</form>
 	)
 }
