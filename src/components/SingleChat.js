@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -39,5 +40,5 @@ SingleChat.propTypes = {
 }
 
 SingleChat.defaultProps = {
-	avatar: 'http://obuvasta.ru/wp-content/uploads/2018/12/boy-512.png',
+	avatar: `${require('../assets/avatar.png')}`,
 }
