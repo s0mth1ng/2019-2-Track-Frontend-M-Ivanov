@@ -60,13 +60,7 @@ export default function Chats(props) {
 
 	function getDefaultState() {
 		const chatsFromLS = JSON.parse(localStorage.getItem(chatStorage.CHATS_STORAGE)) || []
-		const chatsComponents = chatsFromLS.map(convertToComponent)
-		chatsComponents.sort((a, b) => {
-			const dateA = Date.parse(a.time)
-			const dateB = Date.parse(b.time)
-			return dateA.getTime < dateB.getTime ? 1 : -1
-		})
-		return chatsComponents
+		return chatsFromLS.map(convertToComponent)
 	}
 
 	function pushChatsToLS(newChats) {
