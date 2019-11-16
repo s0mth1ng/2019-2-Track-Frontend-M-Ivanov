@@ -5,16 +5,9 @@
 	padding: 1vh;
 	border-radius: 1em;
 	font-size: 2vh;
-
 	animation-name: slideUp;
-	-webkit-animation-name: slideUp;
-
 	animation-duration: 1s;
-	-webkit-animation-duration: 1s;
-
 	animation-timing-function: ease;
-	-webkit-animation-timing-function: ease;
-
 	visibility: visible !important;
 }
 
@@ -74,26 +67,5 @@
 	}
 	100% {
 		transform: translateY(0%);
-	}
-}
-
-@-webkit-keyframes slideUp {
-	0% {
-		-webkit-transform: translateY(100%);
-	}
-	50% {
-		-webkit-transform: translateY(-8%);
-	}
-	65% {
-		-webkit-transform: translateY(4%);
-	}
-	80% {
-		-webkit-transform: translateY(-4%);
-	}
-	95% {
-		-webkit-transform: translateY(2%);
-	}
-	100% {
-		-webkit-transform: translateY(0%);
 	}
 }

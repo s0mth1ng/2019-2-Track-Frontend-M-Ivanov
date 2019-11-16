@@ -24,27 +24,10 @@
 	flex-direction: column;
 	animation-name: slideRight;
 	animation-duration: 0.6s;
-	-webkit-animation-duration: 0.6s;
 	animation-timing-function: ease;
-	-webkit-animation-timing-function: ease;
 }
 
 @keyframes slideRight {
-	0% {
-		transform: translateX(-100%);
-	}
-	50% {
-		transform: translateX(8%);
-	}
-	65% {
-		transform: translateX(-4%);
-	}
-	100% {
-		transform: translateX(0%);
-	}
-}
-
-@-webkit-keyframes slideRight {
 	0% {
 		transform: translateX(-100%);
 	}
