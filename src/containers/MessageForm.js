@@ -1,14 +1,18 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-typos */
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import { useParams } from 'react-router-dom'
 import messageFormStyles from '../styles/messageFormStyles.module.css'
 import Input from '../components/Input'
 import Message from '../components/Message'
 import chatStorage from '../constants/chatStorage'
+import ChatHeader from '../components/ChatHeader'
 
 export default function MessageForm(props) {
-	const localStorageName = `${chatStorage.MESSAGES_STORAGE}_${props.chatId}`
+	const { chatId } = useParams()
+	const chats = JSON.parse(localStorage.getItem(chatStorage.CHATS_STORAGE))
+	const currentChat = chats[chatId]
+	const localStorageName = `${chatStorage.MESSAGES_STORAGE}_${chatId}`
 	const [messages, updateMessages] = useState(getState())
 	const [value, updateValue] = useState('')
 	let messagesCounter = messages.length
@@ -82,20 +86,19 @@ export default function MessageForm(props) {
 	}
 
 	return (
-		<form onSubmit={submit} className={messageFormStyles.container}>
-			<div className={messageFormStyles.messageForm}>
-				<div className={messageFormStyles.messageContainer}>
-					<div className={messageFormStyles.innerContainer}>
-						{messages}
-						<div id="scrollDiv" />
+		<div className="mainPage">
+			<ChatHeader name={currentChat.name} status="online" avatar={currentChat.avatar} />
+			<form onSubmit={submit} className={messageFormStyles.container}>
+				<div className={messageFormStyles.messageForm}>
+					<div className={messageFormStyles.messageContainer}>
+						<div className={messageFormStyles.innerContainer}>
+							{messages}
+							<div id="scrollDiv" />
+						</div>
 					</div>
+					<Input onChange={onChange} value={value} />
 				</div>
-				<Input onChange={onChange} value={value} />
-			</div>
-		</form>
+			</form>
+		</div>
 	)
-}
-
-MessageForm.propTypes = {
-	chatId: PropTypes.number.isRequired,
 }

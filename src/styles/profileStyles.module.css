@@ -1,32 +1,38 @@
-.messageForm {
-	height: 100%;
+.inputContainer {
 	display: flex;
 	flex-direction: column;
 }
 
-.innerContainer {
-	padding-top: 1vh;
-	min-height: 86vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-}
-
-.messageContainer {
-	height: 86vh;
-	overflow-y: scroll;
-}
-
-.container {
-	margin-top: 8vh;
+.editForm {
 	height: 92vh;
+	margin-top: 8vh;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	animation-name: slideRight;
 	animation-duration: 0.6s;
 	-webkit-animation-duration: 0.6s;
 	animation-timing-function: ease;
 	-webkit-animation-timing-function: ease;
+}
+
+.input {
+	font-family: inherit;
+	width: 90%;
+	margin-top: 5vh;
+	display: block;
+	background: #fff;
+	border-radius: 1em;
+	font-size: 3vh;
+	line-height: 1.5em;
+	padding: 0 2vw 0 2vw;
+	outline: none;
+	border: 0.1em solid darkgrey;
+}
+
+textarea {
+	height: 20vh;
+	resize: none;
 }
 
 @keyframes slideRight {

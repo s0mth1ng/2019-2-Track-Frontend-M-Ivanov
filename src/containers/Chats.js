@@ -5,27 +5,17 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import chatsStyles from '../styles/chatsStyles.module.css'
 import SingleChat from '../components/SingleChat'
 import chatStorage from '../constants/chatStorage'
+import ChatListHeader from '../components/ChatListHeader'
 
 export default function Chats(props) {
 	const [chats, updateChats] = useState(getDefaultState())
 	let chatsCounter = chats.length
 
 	function getDefaultChat(id) {
-		return (
-			<SingleChat
-				key={id}
-				goToChat={props.goToChat}
-				id={id}
-				lastMessageContent=""
-				lastMessageTime=""
-				counter={0}
-				name={`Саня #${id + 1}`}
-			/>
-		)
+		return <SingleChat key={id} id={id} lastMessageContent="" lastMessageTime="" counter={0} name={`Саня #${id + 1}`} />
 	}
 
 	function convertToObject(singleChat) {
@@ -57,7 +47,6 @@ export default function Chats(props) {
 		}
 		return (
 			<SingleChat
-				goToChat={props.goToChat}
 				key={object.id}
 				id={object.id}
 				lastMessageContent={lastMessageContent}
@@ -71,7 +60,13 @@ export default function Chats(props) {
 
 	function getDefaultState() {
 		const chatsFromLS = JSON.parse(localStorage.getItem(chatStorage.CHATS_STORAGE)) || []
-		return chatsFromLS.map(convertToComponent)
+		const chatsComponents = chatsFromLS.map(convertToComponent)
+		chatsComponents.sort((a, b) => {
+			const dateA = Date.parse(a.time)
+			const dateB = Date.parse(b.time)
+			return dateA.getTime < dateB.getTime ? 1 : -1
+		})
+		return chatsComponents
 	}
 
 	function pushChatsToLS(newChats) {
@@ -88,15 +83,14 @@ export default function Chats(props) {
 	}
 
 	return (
-		<div className={chatsStyles.container}>
-			<div className={chatsStyles.chatsContainer}>{chats}</div>
-			<div onClick={addChat} className={chatsStyles.create}>
-				<img src={require('../assets/create_conversation.png')} alt="Create chat" />
+		<div className="mainPage">
+			<ChatListHeader />
+			<div className={chatsStyles.container}>
+				<div className={chatsStyles.chatsContainer}>{chats}</div>
+				<div onClick={addChat} className={chatsStyles.create}>
+					<img src={require('../assets/create_conversation.png')} alt="Create chat" />
+				</div>
 			</div>
 		</div>
 	)
-}
-
-Chats.propTypes = {
-	goToChat: PropTypes.func.isRequired,
 }
