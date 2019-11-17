@@ -1,11 +1,11 @@
-import React from 'react'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
-import Chats from '../containers/Chats'
-import Profile from '../containers/Profile'
-import MessageForm from '../containers/MessageForm'
+import React from 'react';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import Chats from '../containers/Chats';
+import Profile from '../containers/Profile';
+import MessageForm from '../containers/MessageForm';
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 
 export default function Routes() {
 	return (
@@ -22,5 +22,5 @@ export default function Routes() {
 				</Route>
 			</Switch>
 		</Router>
-	)
+	);
 }
