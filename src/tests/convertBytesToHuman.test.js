@@ -9,7 +9,6 @@
 
 import convertBytesToHuman from '../convertBytesToHuman';
 
-
 test('Возвращает false для неправильного типа данных', () => {
 	expect(convertBytesToHuman('123')).toBe(false);
 	expect(convertBytesToHuman('asd')).toBe(false);
@@ -27,4 +26,3 @@ test('Возвращает корректное значение для чисе
 	expect(convertBytesToHuman(1024)).toBe('1.000 KB');
 	expect(convertBytesToHuman(7457623572567)).toBe('6.783 TB');
 });
-

@@ -1,18 +1,26 @@
-import React from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
-import App from '../containers/App'
+import React from 'react';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import Chats from '../containers/Chats';
+import Profile from '../containers/Profile';
+import MessageForm from '../containers/MessageForm';
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 
-function Routes() {
+export default function Routes() {
 	return (
-		<HashRouter history={history}>
+		<Router history={history}>
 			<Switch>
-				<Route path="/" component={App} />
+				<Route exact path="/">
+					<Chats />
+				</Route>
+				<Route exact path="/profile">
+					<Profile />
+				</Route>
+				<Route exact path="/chat/:chatId">
+					<MessageForm />
+				</Route>
 			</Switch>
-		</HashRouter>
-	)
+		</Router>
+	);
 }
-
-export default Routes

@@ -1,44 +1,55 @@
-/* eslint-disable global-require */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react'
-import PropTypes from 'prop-types'
-import singleChatStyles from '../styles/singleChatStyles.module.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import singleChatStyles from '../styles/singleChatStyles.module.css';
+import defaultProfileImage from '../assets/avatar.png';
 
 export default function SingleChat(props) {
-	const statusStyle = [{ display: 'none' }, { display: 'block' }]
+	const {
+		id,
+		avatar,
+		name,
+		lastMessageContent,
+		lastMessageTime,
+		counter,
+	} = props;
+	const statusStyle = [{ display: 'none' }, { display: 'block' }];
 
 	return (
-		<div onClick={props.goToChat.bind(this, props.id)} className={singleChatStyles.container}>
+		<Link to={`/chat/${id}`} className={singleChatStyles.container}>
 			<div className={singleChatStyles.avatar}>
-				<img style={{ height: '9vh' }} src={props.avatar} alt="Profile" />
+				<img style={{ height: '9vh' }} src={avatar} alt="Profile" />
 			</div>
 			<div className={singleChatStyles.content}>
-				<div className={singleChatStyles.name}>{props.name}</div>
-				<div className={singleChatStyles.lastMessage}>{props.lastMessageContent}</div>
+				<div className={singleChatStyles.name}>{name}</div>
+				<div className={singleChatStyles.lastMessage}>{lastMessageContent}</div>
 			</div>
 			<div className={singleChatStyles.status}>
-				<div className={singleChatStyles.time}>{props.lastMessageTime}</div>
-				<div style={statusStyle[props.counter > 0 ? 1 : 0]} className={singleChatStyles.counter}>
-					{props.counter}
+				<div className={singleChatStyles.time}>{lastMessageTime}</div>
+				<div
+					style={statusStyle[counter > 0 ? 1 : 0]}
+					className={singleChatStyles.counter}
+				>
+					{counter}
 				</div>
-				<div style={statusStyle[props.counter < 0 ? 1 : 0]} className={singleChatStyles.read} />
+				<div
+					style={statusStyle[counter < 0 ? 1 : 0]}
+					className={singleChatStyles.read}
+				/>
 			</div>
-		</div>
-	)
+		</Link>
+	);
 }
 
 SingleChat.propTypes = {
-	goToChat: PropTypes.func.isRequired,
 	id: PropTypes.number.isRequired,
 	lastMessageContent: PropTypes.string.isRequired,
 	lastMessageTime: PropTypes.string.isRequired,
 	counter: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
 	avatar: PropTypes.string,
-}
+};
 
 SingleChat.defaultProps = {
-	avatar: `${require('../assets/avatar.png')}`,
-}
+	avatar: `${defaultProfileImage}`,
+};
