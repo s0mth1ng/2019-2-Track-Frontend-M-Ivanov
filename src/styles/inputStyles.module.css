@@ -35,7 +35,7 @@ img {
 	margin-right: 0.7vh;
 }
 
-.geo:hover {
+.geo img:hover {
 	transition: all 0.5s ease;
 	opacity: 70%;
 }
