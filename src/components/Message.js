@@ -6,7 +6,11 @@ export default function Message(props) {
 	const { type, watched, content, time, url } = props;
 	let message = content;
 	if (url) {
-		message = <a href={url}>{content}</a>;
+		message = (
+			<a rel="noopener noreferrer" target="_blank" href={url}>
+				{content}
+			</a>
+		);
 	}
 
 	let statusStyle = { display: 'none' };

@@ -35,17 +35,17 @@ img {
 	margin-right: 0.7vh;
 }
 
-.geo img:hover {
+.geo:hover {
 	transition: all 0.5s ease;
 	opacity: 70%;
 }
 
-.send img:hover {
+.send:hover {
 	transition: all 0.5s ease;
 	opacity: 70%;
 }
 
-.attach img:hover {
+.attach:hover {
 	transition: all 0.5s ease;
 	opacity: 70%;
 }
