@@ -18,7 +18,7 @@ export default function SingleChat(props) {
 	return (
 		<Link to={`/chat/${id}`} className={singleChatStyles.container}>
 			<div className={singleChatStyles.avatar}>
-				<img style={{ height: '9vh' }} src={avatar} alt="Profile" />
+				<img src={avatar} alt="Profile" />
 			</div>
 			<div className={singleChatStyles.content}>
 				<div className={singleChatStyles.name}>{name}</div>

@@ -5,6 +5,10 @@
 	width: 10vh;
 }
 
+.avatar img {
+	height: 9vh;
+}
+
 .name {
 	font-size: 2.5vh;
 	font-weight: bold;
