@@ -1,0 +1,43 @@
+.messageForm {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.innerContainer {
+	padding-top: 1vh;
+	min-height: 86vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.messageContainer {
+	height: 86vh;
+	overflow-y: auto;
+}
+
+.container {
+	margin-top: 8vh;
+	height: 92vh;
+	display: flex;
+	flex-direction: column;
+	animation-name: slideRight;
+	animation-duration: 0.6s;
+	animation-timing-function: ease;
+}
+
+@keyframes slideRight {
+	0% {
+		transform: translateX(-100%);
+	}
+	50% {
+		transform: translateX(8%);
+	}
+	65% {
+		transform: translateX(-4%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}

@@ -1,0 +1,71 @@
+.avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 10vh;
+}
+
+.name {
+	font-size: 2.5vh;
+	font-weight: bold;
+}
+
+.container {
+	display: flex;
+	min-height: 10vh;
+	align-items: center;
+	border-bottom: 0.1vh solid lightgray;
+	transition: all 0.3s ease;
+}
+
+.container:hover {
+	background: aliceblue;
+}
+
+.status {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	padding-right: 1vw;
+}
+
+.lastMessage,
+.time {
+	font-size: 2vh;
+	color: #555555;
+}
+
+.time {
+	font-size: 1.5vh;
+}
+
+.counter {
+	display: none;
+	line-height: 2vh;
+	font-size: 2vh;
+	font-weight: bold;
+	padding: 1vh 1vw;
+	border-radius: 1vh;
+	color: #555555;
+	background: #d6e5fa;
+}
+
+.read {
+	background-color: #4f6ea3;
+	height: 0.8vh;
+	width: 0.8vh;
+	border-radius: 50%;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding-left: 1vw;
+	padding-bottom: 1vh;
+	width: 100%;
+	height: 100%;
+	word-break: break-all;
+}
