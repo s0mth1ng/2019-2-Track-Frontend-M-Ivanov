@@ -24,6 +24,7 @@ export default function MessageForm() {
 			time: message.props.time,
 			watched: message.props.watched,
 			type: message.props.type,
+			url: message.props.url,
 		};
 	}
 
@@ -35,6 +36,7 @@ export default function MessageForm() {
 				time={object.time}
 				watched={object.watched}
 				type={object.type}
+				url={object.url}
 			/>
 		);
 	}
@@ -53,24 +55,23 @@ export default function MessageForm() {
 		);
 	}
 
-	function submit(e) {
-		e.preventDefault();
-		const content = value.trim();
-		if (content === '') {
-			return;
-		}
-		const newMessage = (
+	function createMessage(content, url) {
+		return (
 			<Message
 				key={messagesCounter}
-				content={value}
+				content={content}
 				time={new Date().toLocaleTimeString(navigator.language, {
 					hour: '2-digit',
 					minute: '2-digit',
 				})}
 				watched={false}
 				type="sent"
+				url={url}
 			/>
 		);
+	}
+
+	function sendMessage(newMessage) {
 		const newMessages = [...messages, newMessage];
 		updateMessages(newMessages);
 		updateValue('');
@@ -80,6 +81,16 @@ export default function MessageForm() {
 		scrollToBottom();
 	}
 
+	function submit(e) {
+		e.preventDefault();
+		const content = value.trim();
+		if (content === '') {
+			return;
+		}
+		const newMessage = createMessage(value, '');
+		sendMessage(newMessage);
+	}
+
 	function scrollToBottom() {
 		const scrollDiv = document.getElementById('scrollDiv');
 		scrollDiv.scrollIntoView({ behavior: 'smooth' });
@@ -87,6 +98,18 @@ export default function MessageForm() {
 
 	function onChange(e) {
 		updateValue(e.target.value);
+	}
+
+	function sendLocation() {
+		if ('geolocation' in navigator) {
+			navigator.geolocation.getCurrentPosition((position) => {
+				const url = `https://www.openstreetmap.org/#map=18/${position.coords.latitude}/${position.coords.longitude}`;
+				const newMessage = createMessage('Я тут!', url);
+				sendMessage(newMessage);
+			});
+		} else {
+			alert('Геолокация недоступна(((((');
+		}
 	}
 
 	return (
@@ -104,7 +127,12 @@ export default function MessageForm() {
 							<div id="scrollDiv" />
 						</div>
 					</div>
-					<Input onSend={submit} onChange={onChange} value={value} />
+					<Input
+						onLocation={sendLocation}
+						onSend={submit}
+						onChange={onChange}
+						value={value}
+					/>
 				</div>
 			</form>
 		</div>

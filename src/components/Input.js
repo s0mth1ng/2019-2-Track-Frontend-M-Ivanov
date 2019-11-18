@@ -7,7 +7,7 @@ import sendButton from '../assets/send.svg';
 import geoButton from '../assets/geo.svg';
 
 export default function Input(props) {
-	const { onChange, onSend, value } = props;
+	const { onChange, onSend, onLocation, value } = props;
 
 	return (
 		<div className={inputStyles.container}>
@@ -22,7 +22,7 @@ export default function Input(props) {
 				<div className={inputStyles.attach}>
 					<img src={attachButton} alt="Attachment button" />
 				</div>
-				<div className={inputStyles.geo}>
+				<div onClick={onLocation} className={inputStyles.geo}>
 					<img src={geoButton} alt="Location button" />
 				</div>
 				<div onClick={onSend} className={inputStyles.send}>
@@ -37,4 +37,5 @@ Input.propTypes = {
 	value: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,
 	onSend: PropTypes.func.isRequired,
+	onLocation: PropTypes.func.isRequired,
 };

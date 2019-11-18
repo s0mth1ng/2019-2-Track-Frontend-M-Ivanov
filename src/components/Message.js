@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import styles from '../styles/messageStyles.module.css';
 
 export default function Message(props) {
-	const { type, watched, content, time } = props;
+	const { type, watched, content, time, url } = props;
+	let message = content;
+	if (url) {
+		message = <a href={url}>{content}</a>;
+	}
 
 	let statusStyle = { display: 'none' };
 	if (type === 'sent' && !watched) {
@@ -11,7 +15,7 @@ export default function Message(props) {
 	}
 	return (
 		<div className={`${styles.container} ${styles[type]}`}>
-			<div className={styles.content}>{content}</div>
+			<div className={styles.content}>{message}</div>
 			<div className={styles.status}>
 				<div style={statusStyle} className={styles.read} />
 				<div className={styles.time}>{time}</div>
@@ -25,4 +29,5 @@ Message.propTypes = {
 	time: PropTypes.string.isRequired,
 	watched: PropTypes.bool.isRequired,
 	type: PropTypes.string.isRequired,
+	url: PropTypes.string.isRequired,
 };
