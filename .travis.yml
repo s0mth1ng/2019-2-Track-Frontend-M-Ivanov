@@ -15,6 +15,6 @@ deploy:
   local_dir: build
   on:
     branch:
-      - hw6
+      - hw7
       - master
       - devel

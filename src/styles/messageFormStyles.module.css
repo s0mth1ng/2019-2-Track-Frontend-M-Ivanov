@@ -6,14 +6,14 @@
 
 .innerContainer {
 	padding-top: 1vh;
-	min-height: 86vh;
+	min-height: 85vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 }
 
 .messageContainer {
-	height: 86vh;
+	height: 85vh;
 	overflow-y: scroll;
 }
 

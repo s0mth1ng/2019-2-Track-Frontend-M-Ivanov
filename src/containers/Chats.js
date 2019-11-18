@@ -4,7 +4,7 @@ import chatsStyles from '../styles/chatsStyles.module.css';
 import SingleChat from '../components/SingleChat';
 import chatStorage from '../constants/chatStorage';
 import ChatListHeader from '../components/ChatListHeader';
-import createConversationButton from '../assets/create_conversation.png';
+import createConversationButton from '../assets/create.svg';
 
 export default function Chats() {
 	const [chats, updateChats] = useState(getDefaultState());

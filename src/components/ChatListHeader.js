@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles/headerStyles.module.css';
-import menuButton from '../assets/menu.png';
-import searchButton from '../assets/search.png';
+import menuButton from '../assets/menu.svg';
+import searchButton from '../assets/search.svg';
 
 function ChatListHeader() {
 	return (

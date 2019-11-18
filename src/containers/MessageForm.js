@@ -104,7 +104,7 @@ export default function MessageForm() {
 							<div id="scrollDiv" />
 						</div>
 					</div>
-					<Input onChange={onChange} value={value} />
+					<Input onSend={submit} onChange={onChange} value={value} />
 				</div>
 			</form>
 		</div>

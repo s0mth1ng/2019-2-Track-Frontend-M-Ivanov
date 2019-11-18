@@ -1,20 +1,16 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import inputStyles from '../styles/inputStyles.module.css';
-import attachButton from '../assets/attach.png';
+import attachButton from '../assets/attach.svg';
+import sendButton from '../assets/send.svg';
+import geoButton from '../assets/geo.svg';
 
 export default function Input(props) {
-	const { onChange, value } = props;
+	const { onChange, onSend, value } = props;
 
 	return (
 		<div className={inputStyles.container}>
-			<div className={inputStyles.attach}>
-				<img
-					style={{ height: '5vh', transform: 'rotate(90deg)' }}
-					src={attachButton}
-					alt="Attachment button"
-				/>
-			</div>
 			<input
 				className={inputStyles.input}
 				onChange={onChange}
@@ -22,6 +18,17 @@ export default function Input(props) {
 				type="text"
 				value={value}
 			/>
+			<div className={inputStyles.buttons}>
+				<div className={inputStyles.attach}>
+					<img src={attachButton} alt="Attachment button" />
+				</div>
+				<div className={inputStyles.geo}>
+					<img src={geoButton} alt="Location button" />
+				</div>
+				<div onClick={onSend} className={inputStyles.send}>
+					<img src={sendButton} alt="Send button" />
+				</div>
+			</div>
 		</div>
 	);
 }
@@ -29,4 +36,5 @@ export default function Input(props) {
 Input.propTypes = {
 	value: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,
+	onSend: PropTypes.func.isRequired,
 };
