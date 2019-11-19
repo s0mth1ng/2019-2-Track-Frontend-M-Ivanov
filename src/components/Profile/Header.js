@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import headerStyles from '../../styles/headerStyles.module.css';
+import headerStyles from '../../styles/headerStyles.module.scss';
 import chatStorage from '../../constants/chatStorage';
 import backButton from '../../assets/back.svg';
 import doneButton from '../../assets/done.svg';

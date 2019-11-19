@@ -31,5 +31,12 @@ module.exports = {
 		'a11y/content-property-no-static-value': true,
 
 		'scale-unlimited/declaration-strict-value': ['/color/', 'fill', 'stroke'],
+
+		'plugin/no-low-performance-animation-properties': [
+			true,
+			{
+				ignoreProperties: ['background-color'],
+			},
+		],
 	},
 };

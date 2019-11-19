@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../styles/messageStyles.module.css';
+import styles from '../styles/messageStyles.module.scss';
 
 export default function Message(props) {
 	const { type, watched, content, time, url } = props;

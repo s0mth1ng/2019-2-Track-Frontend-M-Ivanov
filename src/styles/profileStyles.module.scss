@@ -1,3 +1,5 @@
+$reduce: reduce;
+
 .inputContainer {
 	display: flex;
 	flex-direction: column;
@@ -12,6 +14,17 @@
 	animation-name: slideRight;
 	animation-duration: 0.6s;
 	animation-timing-function: ease;
+
+	@media screen and (prefers-reduced-motion: $reduce) {
+		height: 92vh;
+		margin-top: 8vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		animation: none;
+		animation-duration: 0.6s;
+		animation-timing-function: ease;
+	}
 }
 
 .input {
@@ -19,13 +32,13 @@
 	width: 90%;
 	margin-top: 5vh;
 	display: block;
-	background: #fff;
+	background: rgb(255, 255, 255);
 	border-radius: 1em;
 	font-size: 3vh;
 	line-height: 1.5em;
 	padding: 0 2vw 0 2vw;
 	outline: none;
-	border: 0.1em solid darkgrey;
+	border: 0.1em solid rgb(169, 169, 169);
 }
 
 textarea {
@@ -37,12 +50,15 @@ textarea {
 	0% {
 		transform: translateX(-100%);
 	}
+
 	50% {
 		transform: translateX(8%);
 	}
+
 	65% {
 		transform: translateX(-4%);
 	}
+
 	100% {
 		transform: translateX(0%);
 	}

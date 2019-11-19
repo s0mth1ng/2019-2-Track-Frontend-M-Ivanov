@@ -1,23 +1,46 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+$reduce: reduce;
 
 .button {
-	transition: all 0.3s ease;
+	transition: transform 0.3s ease, opacity 0.3s ease;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	height: 8vh;
-}
 
-.button img {
-	height: 7vh;
+	img {
+		height: 7vh;
+	}
+
+	@media screen and (prefers-reduced-motion: $reduce) {
+		transition: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 8vh;
+
+		img {
+			height: 7vh;
+		}
+	}
 }
 
 .profilePicture {
 	height: 7vh;
 }
 
-.button:hover {
-	transition: all 0.3s ease;
+@media screen and (prefers-reduced-motion: $reduce) {
+	.button:hover,
+	.button:focus {
+		transition: none;
+		transform: scale(1.4);
+		opacity: 0.6;
+	}
+}
+
+.button:hover,
+.button:focus {
+	transition: transform 0.3s ease, opacity 0.3s ease;
 	transform: scale(1.4);
 	opacity: 0.6;
 }
@@ -51,15 +74,15 @@
 .appName {
 	font-family: 'Pacifico', cursive;
 	font-size: 4vh;
-	color: white;
+	color: rgb(255, 255, 255);
 }
 
 .name {
 	font-size: 3vh;
-	color: white;
+	color: rgb(255, 255, 255);
 }
 
 .status {
 	font-size: 2vh;
-	color: greenyellow;
+	color: rgb(173, 255, 47);
 }

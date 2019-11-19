@@ -1,32 +1,52 @@
+$reduce: reduce;
+
 .avatar {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 10vh;
-}
 
-.avatar img {
-	height: 9vh;
+	img {
+		height: 9vh;
+	}
 }
 
 .name {
 	font-size: 2.5vh;
-	font-weight: bold;
+	font-weight: 700;
 }
 
 .container {
 	line-height: 4vh;
 	text-decoration: none;
-	color: black;
+	color: rgb(0, 0, 0);
 	display: flex;
 	min-height: 10vh;
 	align-items: center;
-	border-bottom: 0.1vh solid lightgray;
-	transition: all 0.3s ease;
-}
+	border-bottom: 0.1vh solid rgb(211, 211, 211);
+	// noinspection Stylelint
+	transition: background-color 0.3s ease;
 
-.container:hover {
-	background: aliceblue;
+	&:hover,
+	&:focus {
+		background: rgb(240, 248, 255);
+	}
+
+	@media screen and (prefers-reduced-motion: $reduce) {
+		line-height: 4vh;
+		text-decoration: none;
+		color: rgb(0, 0, 0);
+		display: flex;
+		min-height: 10vh;
+		align-items: center;
+		border-bottom: 0.1vh solid rgb(211, 211, 211);
+		transition: none;
+
+		&:hover,
+		&:focus {
+			background: rgb(240, 248, 255);
+		}
+	}
 }
 
 .status {
@@ -41,7 +61,7 @@
 .lastMessage,
 .time {
 	font-size: 2vh;
-	color: #555555;
+	color: rgb(85, 85, 85);
 }
 
 .time {
@@ -51,15 +71,15 @@
 .counter {
 	display: none;
 	font-size: 2vh;
-	font-weight: bold;
+	font-weight: 700;
 	padding: 1vh 1vw;
 	border-radius: 1vh;
-	color: #555555;
-	background: #d6e5fa;
+	color: rgb(85, 85, 85);
+	background: rgb(214, 229, 250);
 }
 
 .read {
-	background-color: #4f6ea3;
+	background-color: rgb(79, 110, 163);
 	height: 0.8vh;
 	width: 0.8vh;
 	border-radius: 50%;

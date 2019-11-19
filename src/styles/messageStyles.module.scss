@@ -1,3 +1,5 @@
+$reduce: reduce;
+
 .container {
 	position: relative;
 	max-width: 75%;
@@ -9,24 +11,37 @@
 	animation-duration: 1s;
 	animation-timing-function: ease;
 	visibility: visible !important;
+
+	@media screen and (prefers-reduced-motion: $reduce) {
+		position: relative;
+		max-width: 75%;
+		margin-bottom: 2vh;
+		padding: 1vh;
+		border-radius: 1em;
+		font-size: 2vh;
+		animation: none;
+		animation-duration: 1s;
+		animation-timing-function: ease;
+		visibility: visible !important;
+	}
 }
 
 .received {
 	margin-left: 1vw;
 	align-self: flex-start;
-	background: #ececf1;
+	background: rgb(236, 236, 241);
 }
 
 .sent {
 	margin-right: 1vw;
 	align-self: flex-end;
-	background: #d6e5fa;
+	background: rgb(214, 229, 250);
 }
 
 .time {
 	margin-right: 1vw;
 	font-size: 2vh;
-	color: #909193;
+	color: rgb(144, 145, 147);
 	text-align: right;
 }
 
@@ -38,7 +53,7 @@
 
 .read {
 	margin-right: 1vh;
-	background-color: #4f6ea3;
+	background-color: rgb(79, 110, 163);
 	height: 1vh;
 	width: 1vh;
 	border-radius: 50%;
@@ -53,18 +68,23 @@
 	0% {
 		transform: translateY(100%);
 	}
+
 	50% {
 		transform: translateY(-8%);
 	}
+
 	65% {
 		transform: translateY(4%);
 	}
+
 	80% {
 		transform: translateY(-4%);
 	}
+
 	95% {
 		transform: translateY(2%);
 	}
+
 	100% {
 		transform: translateY(0%);
 	}

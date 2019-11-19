@@ -1,7 +1,9 @@
+$reduce: reduce;
+
 .create {
 	height: 8vh;
 	width: 8vh;
-	transition: all 0.3s ease;
+	transition: transform 0.3s ease;
 	display: flex;
 	align-items: center;
 	background-color: rgb(79, 110, 163);
@@ -10,9 +12,22 @@
 	right: 5vw;
 	bottom: 5vh;
 	border-radius: 50%;
-	display: flex;
-	align-items: center;
 	justify-content: center;
+
+	@media screen and (prefers-reduced-motion: $reduce) {
+		height: 8vh;
+		width: 8vh;
+		transition: none;
+		display: flex;
+		align-items: center;
+		background-color: rgb(79, 110, 163);
+		padding: 1vh;
+		position: fixed;
+		right: 5vw;
+		bottom: 5vh;
+		border-radius: 50%;
+		justify-content: center;
+	}
 }
 
 .main {
@@ -26,8 +41,17 @@
 	width: 100%;
 }
 
-.create:hover {
-	transition: all 0.3s ease;
+@media screen and (prefers-reduced-motion: $reduce) {
+	.create:hover,
+	.create:focus {
+		transition: none;
+		transform: scale(1.2);
+	}
+}
+
+.create:hover,
+.create:focus {
+	transition: transform 0.3s ease;
 	transform: scale(1.2);
 }
 
@@ -44,18 +68,30 @@
 	width: 100%;
 	animation-name: slideLeft;
 	animation-duration: 0.6s;
+
+	@media screen and (prefers-reduced-motion: $reduce) {
+		height: 92vh;
+		margin-top: 8vh;
+		overflow-y: auto;
+		width: 100%;
+		animation: none;
+		animation-duration: 0.6s;
+	}
 }
 
 @keyframes slideLeft {
 	0% {
 		transform: translateX(100%);
 	}
+
 	50% {
 		transform: translateX(-8%);
 	}
+
 	65% {
 		transform: translateX(4%);
 	}
+
 	100% {
 		transform: translateX(0%);
 	}

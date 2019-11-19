@@ -2,7 +2,7 @@
 /* eslint-disable react/no-typos */
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import messageFormStyles from '../styles/messageFormStyles.module.css';
+import messageFormStyles from '../styles/messageFormStyles.module.scss';
 import Input from '../components/Input';
 import Message from '../components/Message';
 import chatStorage from '../constants/chatStorage';

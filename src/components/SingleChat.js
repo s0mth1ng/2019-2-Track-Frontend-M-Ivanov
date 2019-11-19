@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import singleChatStyles from '../styles/singleChatStyles.module.css';
+import singleChatStyles from '../styles/singleChatStyles.module.scss';
 import defaultProfileImage from '../assets/avatar.png';
 
 export default function SingleChat(props) {

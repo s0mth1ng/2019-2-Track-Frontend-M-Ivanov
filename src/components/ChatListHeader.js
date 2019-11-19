@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../styles/headerStyles.module.css';
+import styles from '../styles/headerStyles.module.scss';
 import menuButton from '../assets/menu.svg';
 import searchButton from '../assets/search.svg';
 

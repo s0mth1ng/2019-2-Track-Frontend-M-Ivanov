@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Profile/Header';
 import chatStorage from '../constants/chatStorage';
-import styles from '../styles/profileStyles.module.css';
+import styles from '../styles/profileStyles.module.scss';
 
 export default function Profile() {
 	const userInfo = JSON.parse(
