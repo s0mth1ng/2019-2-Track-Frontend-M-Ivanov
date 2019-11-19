@@ -19,13 +19,16 @@ export default function Input(props) {
 				value={value}
 			/>
 			<div className={inputStyles.buttons}>
-				<div className={inputStyles.attach}>
+				<div className={inputStyles.button}>
 					<img src={attachButton} alt="Attachment button" />
 				</div>
-				<div onClick={onLocation} className={inputStyles.geo}>
+				<div
+					onClick={onLocation}
+					className={`${inputStyles.geo} ${inputStyles.button}`}
+				>
 					<img src={geoButton} alt="Location button" />
 				</div>
-				<div onClick={onSend} className={inputStyles.send}>
+				<div onClick={onSend} className={inputStyles.button}>
 					<img src={sendButton} alt="Send button" />
 				</div>
 			</div>
