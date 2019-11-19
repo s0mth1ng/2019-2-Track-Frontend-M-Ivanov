@@ -10,7 +10,7 @@ function ChatListHeader() {
 			<Link to="/profile" className={`menu-button ${styles.button}`}>
 				<img src={menuButton} alt="Menu button" />
 			</Link>
-			<div className={styles.name}>Fkontakte v1.0.1</div>
+			<div className={styles.appName}>Fkontakte v1.0.1</div>
 			<div className={`search-button ${styles.button}`}>
 				<img src={searchButton} alt="Search button" />
 			</div>
