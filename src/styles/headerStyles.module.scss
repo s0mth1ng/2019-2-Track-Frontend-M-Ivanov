@@ -2,87 +2,87 @@
 $reduce: reduce;
 
 .button {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 8vh;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 8vh;
 
-  img {
-    height: 7vh;
-  }
+	img {
+		height: 7vh;
+	}
 
-  @media screen and (prefers-reduced-motion: $reduce) {
-    transition: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 8vh;
+	@media screen and (prefers-reduced-motion: $reduce) {
+		transition: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 8vh;
 
-    img {
-      height: 7vh;
-    }
-  }
+		img {
+			height: 7vh;
+		}
+	}
 }
 
 .profilePicture {
-  height: 7vh;
+	height: 7vh;
 }
 
 @media screen and (prefers-reduced-motion: $reduce) {
-  .button:hover,
-  .button:focus {
-    transition: none;
-    transform: scale(1.4);
-    opacity: 0.6;
-  }
+	.button:hover,
+	.button:focus {
+		transition: none;
+		transform: scale(1.4);
+		opacity: 0.6;
+	}
 }
 
 .button:hover,
 .button:focus {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  transform: scale(1.4);
-  opacity: 0.6;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	transform: scale(1.4);
+	opacity: 0.6;
 }
 
 .container {
-  position: fixed;
-  top: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 8vh;
-  padding: 1vw;
-  background: rgb(79, 110, 163);
+	position: fixed;
+	top: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 8vh;
+	padding: 1vh 1vw;
+	background: rgb(79, 110, 163);
 }
 
 .avatar {
-  display: flex;
-  flex-direction: column;
-  margin-right: 1vw;
+	display: flex;
+	flex-direction: column;
+	margin-right: 1vw;
 }
 
 .account {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 3vh;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 3vh;
 }
 
 .appName {
-  font-family: 'Pacifico', cursive;
-  font-size: 4vh;
-  color: rgb(255, 255, 255);
+	font-family: 'Pacifico', cursive;
+	font-size: 4vh;
+	color: rgb(255, 255, 255);
 }
 
 .name {
-  font-size: 3vh;
-  color: rgb(255, 255, 255);
+	font-size: 3vh;
+	color: rgb(255, 255, 255);
 }
 
 .status {
-  font-size: 2vh;
-  color: rgb(173, 255, 47);
+	font-size: 2vh;
+	color: rgb(173, 255, 47);
 }

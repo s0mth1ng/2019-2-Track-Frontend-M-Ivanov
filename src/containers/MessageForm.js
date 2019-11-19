@@ -102,11 +102,16 @@ export default function MessageForm() {
 
 	function sendLocation() {
 		if ('geolocation' in navigator) {
-			navigator.geolocation.getCurrentPosition((position) => {
-				const url = `https://www.openstreetmap.org/#map=18/${position.coords.latitude}/${position.coords.longitude}`;
-				const newMessage = createMessage('Я тут!', url);
-				sendMessage(newMessage);
-			});
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					const url = `https://www.openstreetmap.org/#map=18/${position.coords.latitude}/${position.coords.longitude}`;
+					const newMessage = createMessage('Я тут!', url);
+					sendMessage(newMessage);
+				},
+				(err) => {
+					alert('Геолокация недоступна(((((');
+				},
+			);
 		} else {
 			alert('Геолокация недоступна(((((');
 		}
