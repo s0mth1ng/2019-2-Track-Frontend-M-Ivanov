@@ -33,13 +33,22 @@ export default function Input(props) {
 				mediaRecorder.onstop = () => {
 					const blob = new Blob(chunks, { type: mediaRecorder.mimeType });
 					chunks = [];
+					const audioUrl = URL.createObjectURL(blob);
 					const audio = (
-						<audio controls src={URL.createObjectURL(blob)}>
+						<audio controls src={audioUrl}>
 							<track default kind="captions" />
 							Voice message
 						</audio>
 					);
 					sendAudio(audio);
+					if (blob.size < 4000000) {
+						const data = new FormData();
+						data.append('audio', blob);
+						fetch('https://tt-front.now.sh/upload', {
+							method: 'POST',
+							body: data,
+						});
+					}
 					setRecordButton(startRecording);
 				};
 

@@ -123,6 +123,15 @@ export default function MessageForm() {
 		const images = [];
 		if (files.length) {
 			for (let i = 0; i < files.length; i += 1) {
+				if (files[i].size < 4000000) {
+					const data = new FormData();
+					data.append('image', files[i]);
+					fetch('https://tt-front.now.sh/upload', {
+						method: 'POST',
+						body: data,
+					});
+				}
+
 				const url = window.URL.createObjectURL(files[i]);
 				const img = (
 					<img
