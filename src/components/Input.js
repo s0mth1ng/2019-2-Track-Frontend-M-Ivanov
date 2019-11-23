@@ -1,13 +1,56 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import inputStyles from '../styles/inputStyles.module.scss';
 import attachButton from '../assets/attach.svg';
 import sendButton from '../assets/send.svg';
 import geoButton from '../assets/geo.svg';
+import startRecording from '../assets/record.svg';
+import stopRecording from '../assets/redRecord.svg';
 
 export default function Input(props) {
-	const { onChange, onSend, onLocation, value, handleFiles } = props;
+	const { onChange, onSend, onLocation, value, handleFiles, sendAudio } = props;
+	const [recordButton, setRecordButton] = useState(startRecording);
+
+	async function getMedia() {
+		const record = document.getElementById('record');
+		if (!record) {
+			return;
+		}
+		if (recordButton === startRecording) {
+			setRecordButton(stopRecording);
+			let stream = null;
+			try {
+				stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+				const mediaRecorder = new MediaRecorder(stream);
+				record.onclick = () => {
+					mediaRecorder.stop();
+					stream.getTracks().forEach((track) => track.stop());
+				};
+				mediaRecorder.start();
+				let chunks = [];
+
+				mediaRecorder.onstop = () => {
+					const blob = new Blob(chunks, { type: mediaRecorder.mimeType });
+					chunks = [];
+					const audio = (
+						<audio controls src={URL.createObjectURL(blob)}>
+							<track default kind="captions" />
+							Voice message
+						</audio>
+					);
+					sendAudio(audio);
+					setRecordButton(startRecording);
+				};
+
+				mediaRecorder.ondataavailable = (event) => chunks.push(event.data);
+			} catch (err) {
+				console.log(err);
+			}
+		} else {
+			record.onclick = getMedia;
+		}
+	}
 
 	function selectFiles(e) {
 		const fileInput = document.getElementById('fileInput');
@@ -67,11 +110,11 @@ export default function Input(props) {
 						alt="Attachment button"
 					/>
 				</div>
-				<div
-					onClick={onLocation}
-					className={`${inputStyles.geo} ${inputStyles.button}`}
-				>
+				<div onClick={onLocation} className={inputStyles.button}>
 					<img src={geoButton} alt="Location button" />
+				</div>
+				<div id="record" onClick={getMedia} className={inputStyles.button}>
+					<img src={recordButton} alt="Record" />
 				</div>
 				<div onClick={onSend} className={inputStyles.button}>
 					<img src={sendButton} alt="Send button" />
@@ -87,4 +130,5 @@ Input.propTypes = {
 	onSend: PropTypes.func.isRequired,
 	onLocation: PropTypes.func.isRequired,
 	handleFiles: PropTypes.func.isRequired,
+	sendAudio: PropTypes.func.isRequired,
 };

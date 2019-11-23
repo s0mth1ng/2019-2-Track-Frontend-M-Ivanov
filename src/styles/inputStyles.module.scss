@@ -1,65 +1,61 @@
 $reduce: reduce;
 
 .dropArea {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .input {
-  font-family: inherit;
-  font-size: 2vh;
-  width: 100%;
-  height: 100%;
-  padding: 1vh 1vw;
-  border: 0.2vh solid rgb(79, 110, 163);
-  border-radius: 2em;
-  outline: none;
+	font-family: inherit;
+	font-size: 2vh;
+	width: 100%;
+	height: 100%;
+	padding: 1vh 1vw;
+	border: 0.2vh solid rgb(79, 110, 163);
+	border-radius: 2em;
+	outline: none;
 }
 
 .container {
-  width: 100%;
-  justify-self: flex-end;
-  height: 6vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 1vh;
-  padding: 0 1vw 0 1vw;
+	width: 100%;
+	justify-self: flex-end;
+	height: 6vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 1vh;
+	padding: 0 1vw 0 1vw;
 }
 
 .buttons {
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.geo {
-  margin-right: 0.7vh;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .button {
-  transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
 
-  img {
-    height: 5vh;
-  }
+	img {
+		height: 5vh;
+	}
 
-  @media screen and (prefers-reduced-motion: $reduce) {
-    transition: none;
-  }
+	@media screen and (prefers-reduced-motion: $reduce) {
+		transition: none;
+	}
 }
 
 @media screen and (prefers-reduced-motion: $reduce) {
-  .button:hover,
-  .button:focus {
-    transition: none;
-    opacity: 0.7;
-  }
+	.button:hover,
+	.button:focus {
+		transition: none;
+		opacity: 0.7;
+	}
 }
 
 .button:hover,
 .button:focus {
-  transition: opacity 0.5s ease;
-  opacity: 0.7;
+	transition: opacity 0.5s ease;
+	opacity: 0.7;
 }

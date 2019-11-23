@@ -55,7 +55,7 @@ export default function MessageForm() {
 		);
 	}
 
-	function createMessage(content, url='') {
+	function createMessage(content, url = '') {
 		return (
 			<Message
 				key={messagesCounter}
@@ -71,10 +71,10 @@ export default function MessageForm() {
 		);
 	}
 
-	function sendMessages(newMessages, isImage = false) {
+	function sendMessages(newMessages, isImage = false, isAudio = false) {
 		const updatedMessages = [...messages, ...newMessages];
 		updateMessages(updatedMessages);
-		if (!isImage) {
+		if (!isImage && !isAudio) {
 			updateValue('');
 			pushMessagesToLS(updatedMessages);
 		}
@@ -140,6 +140,11 @@ export default function MessageForm() {
 		sendMessages(images, true);
 	}
 
+	function sendAudio(audio) {
+		const audioMessage = createMessage(audio);
+		sendMessages([audioMessage], false, true);
+	}
+
 	return (
 		<div className="mainPage">
 			<ChatHeader
@@ -161,6 +166,7 @@ export default function MessageForm() {
 						onChange={onChange}
 						value={value}
 						handleFiles={handleFiles}
+						sendAudio={sendAudio}
 					/>
 				</div>
 			</form>
