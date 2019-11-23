@@ -55,7 +55,7 @@ export default function MessageForm() {
 		);
 	}
 
-	function createMessage(content, url) {
+	function createMessage(content, url='') {
 		return (
 			<Message
 				key={messagesCounter}
@@ -71,11 +71,13 @@ export default function MessageForm() {
 		);
 	}
 
-	function sendMessage(newMessage) {
-		const newMessages = [...messages, newMessage];
-		updateMessages(newMessages);
-		updateValue('');
-		pushMessagesToLS(newMessages);
+	function sendMessages(newMessages, isImage = false) {
+		const updatedMessages = [...messages, ...newMessages];
+		updateMessages(updatedMessages);
+		if (!isImage) {
+			updateValue('');
+			pushMessagesToLS(updatedMessages);
+		}
 		messagesCounter += 1;
 		setTimeout(scrollToBottom, 100);
 		scrollToBottom();
@@ -88,7 +90,7 @@ export default function MessageForm() {
 			return;
 		}
 		const newMessage = createMessage(value, '');
-		sendMessage(newMessage);
+		sendMessages([newMessage]);
 	}
 
 	function scrollToBottom() {
@@ -106,7 +108,7 @@ export default function MessageForm() {
 				(position) => {
 					const url = `https://www.openstreetmap.org/#map=18/${position.coords.latitude}/${position.coords.longitude}`;
 					const newMessage = createMessage('Я тут!', url);
-					sendMessage(newMessage);
+					sendMessages([newMessage]);
 				},
 				(err) => {
 					alert('Геолокация недоступна(((((');
@@ -115,6 +117,27 @@ export default function MessageForm() {
 		} else {
 			alert('Геолокация недоступна(((((');
 		}
+	}
+
+	function handleFiles(files) {
+		const images = [];
+		if (files.length) {
+			for (let i = 0; i < files.length; i += 1) {
+				const url = window.URL.createObjectURL(files[i]);
+				const img = (
+					<img
+						key={messagesCounter}
+						src={url}
+						alt="Attached"
+						onLoad={() => window.URL.revokeObjectURL(url)}
+					/>
+				);
+				const imageMessage = createMessage(img);
+				images.push(imageMessage);
+				messagesCounter += 1;
+			}
+		}
+		sendMessages(images, true);
 	}
 
 	return (
@@ -137,6 +160,7 @@ export default function MessageForm() {
 						onSend={submit}
 						onChange={onChange}
 						value={value}
+						handleFiles={handleFiles}
 					/>
 				</div>
 			</form>

@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import inputStyles from '../styles/inputStyles.module.scss';
@@ -7,20 +7,65 @@ import sendButton from '../assets/send.svg';
 import geoButton from '../assets/geo.svg';
 
 export default function Input(props) {
-	const { onChange, onSend, onLocation, value } = props;
+	const { onChange, onSend, onLocation, value, handleFiles } = props;
+
+	function selectFiles(e) {
+		const fileInput = document.getElementById('fileInput');
+		if (fileInput) {
+			fileInput.click();
+		}
+		e.preventDefault();
+	}
+
+	function handle() {
+		const fileInput = document.getElementById('fileInput');
+		const { files } = fileInput;
+		handleFiles(files);
+	}
+
+	function preventDefaults(e) {
+		e.stopPropagation();
+		e.preventDefault();
+	}
+
+	function drop(e) {
+		preventDefaults(e);
+		const { files } = e.dataTransfer;
+		handleFiles(files);
+	}
 
 	return (
 		<div className={inputStyles.container}>
-			<input
-				className={inputStyles.input}
-				onChange={onChange}
-				placeholder="Input something..."
-				type="text"
-				value={value}
-			/>
+			<div
+				className={inputStyles.dropArea}
+				onDragOver={preventDefaults}
+				onDragEnter={preventDefaults}
+				onDrop={drop}
+			>
+				<input
+					className={inputStyles.inputFiles}
+					type="file"
+					id="fileInput"
+					multiple
+					accept="image/*"
+					style={{ display: 'none' }}
+					onChange={handle}
+				/>
+				<input
+					className={inputStyles.input}
+					onChange={onChange}
+					placeholder="Input something or drag images here"
+					type="text"
+					value={value}
+				/>
+			</div>
 			<div className={inputStyles.buttons}>
 				<div className={inputStyles.button}>
-					<img src={attachButton} alt="Attachment button" />
+					<img
+						onClick={selectFiles}
+						src={attachButton}
+						alt="Attachment button"
+					/>
 				</div>
 				<div
 					onClick={onLocation}
@@ -41,4 +86,5 @@ Input.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	onSend: PropTypes.func.isRequired,
 	onLocation: PropTypes.func.isRequired,
+	handleFiles: PropTypes.func.isRequired,
 };

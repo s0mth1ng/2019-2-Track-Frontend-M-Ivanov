@@ -62,6 +62,10 @@ $reduce: reduce;
 .content {
   word-break: break-all;
   margin: 1vh 2vh;
+
+  img {
+    width: 60vmin;
+  }
 }
 
 @keyframes slideUp {
