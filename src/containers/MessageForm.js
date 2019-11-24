@@ -132,11 +132,9 @@ export default function MessageForm() {
 					fetch('https://tt-front.now.sh/upload', {
 						method: 'POST',
 						body: data,
-					}).then((response) => {
-						if (!response.ok) {
-							console.log(response.statusText);
-						}
-					});
+					})
+						.then((response) => response.text())
+						.then((info) => console.log(info));
 				}
 
 				const url = window.URL.createObjectURL(files[i]);
