@@ -41,6 +41,10 @@ export default function Input(props) {
 						fetch('https://tt-front.now.sh/upload', {
 							method: 'POST',
 							body: data,
+						}).then((response) => {
+							if (!response.ok) {
+								console.log(response.statusText);
+							}
 						});
 					}
 					setRecordButton(startRecording);
