@@ -37,6 +37,7 @@ export default function MessageForm() {
 				watched={object.watched}
 				type={object.type}
 				url={object.url}
+				isImage={false}
 			/>
 		);
 	}
@@ -55,7 +56,7 @@ export default function MessageForm() {
 		);
 	}
 
-	function createMessage(content, url = '') {
+	function createMessage(content, url = '', isImage = false, isAudio = false) {
 		return (
 			<Message
 				key={messagesCounter}
@@ -67,6 +68,8 @@ export default function MessageForm() {
 				watched={false}
 				type="sent"
 				url={url}
+				isImage={isImage}
+				isAudio={isAudio}
 			/>
 		);
 	}
@@ -133,15 +136,7 @@ export default function MessageForm() {
 				}
 
 				const url = window.URL.createObjectURL(files[i]);
-				const img = (
-					<img
-						key={messagesCounter}
-						src={url}
-						alt="Attached"
-						onLoad={() => window.URL.revokeObjectURL(url)}
-					/>
-				);
-				const imageMessage = createMessage(img);
+				const imageMessage = createMessage('', url, true);
 				images.push(imageMessage);
 				messagesCounter += 1;
 			}
@@ -150,7 +145,7 @@ export default function MessageForm() {
 	}
 
 	function sendAudio(audio) {
-		const audioMessage = createMessage(audio);
+		const audioMessage = createMessage('', audio, false, true);
 		sendMessages([audioMessage], false, true);
 	}
 

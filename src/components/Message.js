@@ -3,9 +3,18 @@ import PropTypes from 'prop-types';
 import styles from '../styles/messageStyles.module.scss';
 
 export default function Message(props) {
-	const { type, watched, content, time, url } = props;
+	const { type, watched, content, time, url, isImage, isAudio } = props;
 	let message = content;
-	if (url) {
+	if (isImage) {
+		message = <img src={url} alt="Sent" />;
+	} else if (isAudio) {
+		message = (
+			<audio controls src={url}>
+				<track default kind="captions" />
+				Voice message
+			</audio>
+		);
+	} else if (url) {
 		message = (
 			<a rel="noopener noreferrer" target="_blank" href={url}>
 				{content}
@@ -34,4 +43,11 @@ Message.propTypes = {
 	watched: PropTypes.bool.isRequired,
 	type: PropTypes.string.isRequired,
 	url: PropTypes.string.isRequired,
+	isImage: PropTypes.bool,
+	isAudio: PropTypes.bool,
+};
+
+Message.defaultProps = {
+	isImage: false,
+	isAudio: false,
 };

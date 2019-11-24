@@ -34,13 +34,7 @@ export default function Input(props) {
 					const blob = new Blob(chunks, { type: mediaRecorder.mimeType });
 					chunks = [];
 					const audioUrl = URL.createObjectURL(blob);
-					const audio = (
-						<audio controls src={audioUrl}>
-							<track default kind="captions" />
-							Voice message
-						</audio>
-					);
-					sendAudio(audio);
+					sendAudio(audioUrl);
 					if (blob.size < 4000000) {
 						const data = new FormData();
 						data.append('audio', blob);
