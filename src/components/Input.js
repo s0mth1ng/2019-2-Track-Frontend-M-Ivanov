@@ -5,20 +5,17 @@ import inputStyles from '../styles/inputStyles.module.scss';
 import attachButton from '../assets/attach.svg';
 import sendButton from '../assets/send.svg';
 import geoButton from '../assets/geo.svg';
-import startRecording from '../assets/record.svg';
-import stopRecording from '../assets/redRecord.svg';
+import startRecordingButton from '../assets/record.svg';
+import stopRecordingButton from '../assets/redRecord.svg';
 
 export default function Input(props) {
 	const { onChange, onSend, onLocation, value, handleFiles, sendAudio } = props;
-	const [recordButton, setRecordButton] = useState(startRecording);
+	const [isRecording, setRecordingFlag] = useState(false);
 
-	async function getMedia() {
-		const record = document.getElementById('record');
-		if (!record) {
-			return;
-		}
-		if (recordButton === startRecording) {
-			setRecordButton(stopRecording);
+	async function getMedia(event) {
+		const record = document.getElementById('media');
+		if (!isRecording) {
+			setRecordingFlag(true);
 			let stream = null;
 			try {
 				stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -45,10 +42,10 @@ export default function Input(props) {
 							.then((response) => response.text())
 							.then((info) => console.log(info));
 					}
-					setRecordButton(startRecording);
+					setRecordingFlag(false);
 				};
 
-				mediaRecorder.ondataavailable = (event) => chunks.push(event.data);
+				mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
 			} catch (err) {
 				console.log(err);
 			}
@@ -65,9 +62,8 @@ export default function Input(props) {
 		e.preventDefault();
 	}
 
-	function handle() {
-		const fileInput = document.getElementById('fileInput');
-		const { files } = fileInput;
+	function handle(event) {
+		const { files } = event.target;
 		handleFiles(files);
 	}
 
@@ -91,7 +87,7 @@ export default function Input(props) {
 				onDrop={drop}
 			>
 				<input
-					className={inputStyles.inputFiles}
+					className={inputStyles.input}
 					type="file"
 					id="fileInput"
 					multiple
@@ -118,8 +114,17 @@ export default function Input(props) {
 				<div onClick={onLocation} className={inputStyles.button}>
 					<img src={geoButton} alt="Location button" />
 				</div>
-				<div id="record" onClick={getMedia} className={inputStyles.button}>
-					<img src={recordButton} alt="Record" />
+				<div id="media" onClick={getMedia} className={inputStyles.button}>
+					<img
+						style={isRecording ? { display: 'none' } : { display: 'inline' }}
+						src={startRecordingButton}
+						alt="Start record"
+					/>
+					<img
+						style={isRecording ? { display: 'inline' } : { display: 'none' }}
+						src={stopRecordingButton}
+						alt="Stop record"
+					/>
 				</div>
 				<div onClick={onSend} className={inputStyles.button}>
 					<img src={sendButton} alt="Send button" />
