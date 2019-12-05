@@ -13,6 +13,7 @@ let mediaRecorder = null;
 export default function Input(props) {
 	const { onChange, onSend, onLocation, value, handleFiles, sendAudio } = props;
 	const [isRecording, setRecordingFlag] = useState(false);
+	const fileInput = React.createRef();
 
 	async function getMedia(event) {
 		if (!isRecording) {
@@ -55,10 +56,7 @@ export default function Input(props) {
 	}
 
 	function selectFiles(e) {
-		const fileInput = document.getElementById('fileInput');
-		if (fileInput) {
-			fileInput.click();
-		}
+		fileInput.current.click();
 		e.preventDefault();
 	}
 
@@ -89,6 +87,7 @@ export default function Input(props) {
 				<input
 					className={inputStyles.input}
 					type="file"
+					ref={fileInput}
 					id="fileInput"
 					multiple
 					accept="image/*"
