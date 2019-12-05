@@ -8,22 +8,19 @@ import geoButton from '../assets/geo.svg';
 import startRecordingButton from '../assets/record.svg';
 import stopRecordingButton from '../assets/redRecord.svg';
 
+let mediaRecorder = null;
+
 export default function Input(props) {
 	const { onChange, onSend, onLocation, value, handleFiles, sendAudio } = props;
 	const [isRecording, setRecordingFlag] = useState(false);
 
 	async function getMedia(event) {
-		const record = document.getElementById('media');
 		if (!isRecording) {
 			setRecordingFlag(true);
 			let stream = null;
 			try {
 				stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-				const mediaRecorder = new MediaRecorder(stream);
-				record.onclick = () => {
-					mediaRecorder.stop();
-					stream.getTracks().forEach((track) => track.stop());
-				};
+				mediaRecorder = new MediaRecorder(stream);
 				mediaRecorder.start();
 				let chunks = [];
 
@@ -41,6 +38,7 @@ export default function Input(props) {
 						})
 							.then((response) => response.text())
 							.then((info) => console.log(info));
+						stream.getTracks().forEach((track) => track.stop());
 					}
 					setRecordingFlag(false);
 				};
@@ -50,7 +48,7 @@ export default function Input(props) {
 				console.log(err);
 			}
 		} else {
-			record.onclick = getMedia;
+			mediaRecorder.stop();
 		}
 	}
 
