@@ -16,12 +16,12 @@ export default function Input(props) {
 
 	async function getMedia(event) {
 		if (!isRecording) {
-			setRecordingFlag(true);
 			let stream = null;
 			try {
 				stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 				mediaRecorder = new MediaRecorder(stream);
 				mediaRecorder.start();
+				setRecordingFlag(true);
 				let chunks = [];
 
 				mediaRecorder.onstop = () => {
@@ -40,7 +40,6 @@ export default function Input(props) {
 							.then((info) => console.log(info));
 						stream.getTracks().forEach((track) => track.stop());
 					}
-					setRecordingFlag(false);
 				};
 
 				mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
@@ -48,7 +47,10 @@ export default function Input(props) {
 				console.log(err);
 			}
 		} else {
-			mediaRecorder.stop();
+			setRecordingFlag(false);
+			if (mediaRecorder) {
+				mediaRecorder.stop();
+			}
 		}
 	}
 
