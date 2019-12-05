@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../styles/headerStyles.module.css';
-import menuButton from '../assets/menu.png';
-import searchButton from '../assets/search.png';
+import styles from '../styles/headerStyles.module.scss';
+import menuButton from '../assets/menu.svg';
+import searchButton from '../assets/search.svg';
 
 function ChatListHeader() {
 	return (
@@ -10,7 +10,7 @@ function ChatListHeader() {
 			<Link to="/profile" className={`menu-button ${styles.button}`}>
 				<img src={menuButton} alt="Menu button" />
 			</Link>
-			<div className={styles.name}>Fkontakte v1.0.1</div>
+			<div className={styles.appName}>Fkontakte v1.0.1</div>
 			<div className={`search-button ${styles.button}`}>
 				<img src={searchButton} alt="Search button" />
 			</div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import singleChatStyles from '../styles/singleChatStyles.module.css';
+import singleChatStyles from '../styles/singleChatStyles.module.scss';
 import defaultProfileImage from '../assets/avatar.png';
 
 export default function SingleChat(props) {
@@ -18,7 +18,7 @@ export default function SingleChat(props) {
 	return (
 		<Link to={`/chat/${id}`} className={singleChatStyles.container}>
 			<div className={singleChatStyles.avatar}>
-				<img style={{ height: '9vh' }} src={avatar} alt="Profile" />
+				<img src={avatar} alt="Profile" />
 			</div>
 			<div className={singleChatStyles.content}>
 				<div className={singleChatStyles.name}>{name}</div>

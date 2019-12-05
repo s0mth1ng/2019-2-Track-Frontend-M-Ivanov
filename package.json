@@ -48,11 +48,8 @@
 		"stylelint-webpack-plugin": "^1.0.3"
 	},
 	"browserslist": [
-		"> 5%",
-		"last 2 versions",
-		"not ie < 11",
-		"not ie_mob < 11",
-		"not dead"
+		"Chrome > 62",
+		"Firefox > 56"
 	],
 	"scripts": {
 		"predeploy": "npm run build",
@@ -63,7 +60,7 @@
 		"format": "prettier --write '**/*.{js,jsx,json,md}'",
 		"format:changed": "pretty-quick",
 		"format:staged": "pretty-quick --staged",
-		"lint": "npm run lint:js && npm run lint:dup",
+		"lint": "npm run lint:js && npm run lint:dup && npm run lint:css",
 		"lint:check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
 		"lint:js:fix": "npm run lint:js -- --fix",
 		"lint:js": "eslint src/**/*.js -c .eslintrc.json",
@@ -77,7 +74,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "npm run lint && npm run format:staged"
+			"pre-commit": "npm run lint"
 		}
 	},
 	"engines": {

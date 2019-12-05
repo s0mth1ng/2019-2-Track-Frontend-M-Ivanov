@@ -1,0 +1,97 @@
+$reduce: reduce;
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10vh;
+
+  img {
+    height: 9vh;
+  }
+}
+
+.name {
+  font-size: 2.5vh;
+  font-weight: 700;
+}
+
+.container {
+  line-height: 4vh;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  display: flex;
+  min-height: 10vh;
+  align-items: center;
+  border-bottom: 0.1vh solid rgb(211, 211, 211);
+  // noinspection Stylelint
+  transition: background-color 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background: rgb(240, 248, 255);
+  }
+
+  @media screen and (prefers-reduced-motion: $reduce) {
+    line-height: 4vh;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: flex;
+    min-height: 10vh;
+    align-items: center;
+    border-bottom: 0.1vh solid rgb(211, 211, 211);
+    transition: none;
+
+    &:hover,
+    &:focus {
+      background: rgb(240, 248, 255);
+    }
+  }
+}
+
+.status {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 1vw;
+}
+
+.lastMessage,
+.time {
+  font-size: 2vh;
+  color: rgb(85, 85, 85);
+}
+
+.time {
+  font-size: 1.5vh;
+}
+
+.counter {
+  display: none;
+  font-size: 2vh;
+  font-weight: 700;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-radius: 50%;
+  color: rgb(79, 110, 163);
+  background: rgb(214, 229, 250);
+}
+
+.read {
+  background-color: rgb(79, 110, 163);
+  height: 0.8vh;
+  width: 0.8vh;
+  border-radius: 50%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 1vw;
+  width: 100%;
+  height: 100%;
+  word-break: break-all;
+}

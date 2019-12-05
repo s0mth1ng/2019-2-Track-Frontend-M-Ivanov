@@ -2,7 +2,7 @@
 /* eslint-disable react/no-typos */
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import messageFormStyles from '../styles/messageFormStyles.module.css';
+import messageFormStyles from '../styles/messageFormStyles.module.scss';
 import Input from '../components/Input';
 import Message from '../components/Message';
 import chatStorage from '../constants/chatStorage';
@@ -24,6 +24,7 @@ export default function MessageForm() {
 			time: message.props.time,
 			watched: message.props.watched,
 			type: message.props.type,
+			url: message.props.url,
 		};
 	}
 
@@ -35,6 +36,8 @@ export default function MessageForm() {
 				time={object.time}
 				watched={object.watched}
 				type={object.type}
+				url={object.url}
+				isImage={false}
 			/>
 		);
 	}
@@ -53,31 +56,44 @@ export default function MessageForm() {
 		);
 	}
 
-	function submit(e) {
-		e.preventDefault();
-		const content = value.trim();
-		if (content === '') {
-			return;
-		}
-		const newMessage = (
+	function createMessage(content, url = '', isImage = false, isAudio = false) {
+		return (
 			<Message
 				key={messagesCounter}
-				content={value}
+				content={content}
 				time={new Date().toLocaleTimeString(navigator.language, {
 					hour: '2-digit',
 					minute: '2-digit',
 				})}
 				watched={false}
 				type="sent"
+				url={url}
+				isImage={isImage}
+				isAudio={isAudio}
 			/>
 		);
-		const newMessages = [...messages, newMessage];
-		updateMessages(newMessages);
-		updateValue('');
-		pushMessagesToLS(newMessages);
+	}
+
+	function sendMessages(newMessages, isImage = false, isAudio = false) {
+		const updatedMessages = [...messages, ...newMessages];
+		updateMessages(updatedMessages);
+		if (!isImage && !isAudio) {
+			updateValue('');
+			pushMessagesToLS(updatedMessages);
+		}
 		messagesCounter += 1;
 		setTimeout(scrollToBottom, 100);
 		scrollToBottom();
+	}
+
+	function submit(e) {
+		e.preventDefault();
+		const content = value.trim();
+		if (content === '') {
+			return;
+		}
+		const newMessage = createMessage(value, '');
+		sendMessages([newMessage]);
 	}
 
 	function scrollToBottom() {
@@ -87,6 +103,52 @@ export default function MessageForm() {
 
 	function onChange(e) {
 		updateValue(e.target.value);
+	}
+
+	function sendLocation() {
+		if ('geolocation' in navigator) {
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					const url = `https://www.openstreetmap.org/#map=18/${position.coords.latitude}/${position.coords.longitude}`;
+					const newMessage = createMessage('Я тут!', url);
+					sendMessages([newMessage]);
+				},
+				(err) => {
+					alert('Геолокация недоступна(((((');
+				},
+			);
+		} else {
+			alert('Геолокация недоступна(((((');
+		}
+	}
+
+	function handleFiles(files) {
+		const images = [];
+		if (files.length) {
+			for (let i = 0; i < files.length; i += 1) {
+				if (files[i].size < 4000000) {
+					const data = new FormData();
+					data.append('image', files[i]);
+					fetch('https://tt-front.now.sh/upload', {
+						method: 'POST',
+						body: data,
+					})
+						.then((response) => response.text())
+						.then((info) => console.log(info));
+				}
+
+				const url = window.URL.createObjectURL(files[i]);
+				const imageMessage = createMessage('', url, true);
+				images.push(imageMessage);
+				messagesCounter += 1;
+			}
+		}
+		sendMessages(images, true);
+	}
+
+	function sendAudio(audio) {
+		const audioMessage = createMessage('', audio, false, true);
+		sendMessages([audioMessage], false, true);
 	}
 
 	return (
@@ -104,7 +166,14 @@ export default function MessageForm() {
 							<div id="scrollDiv" />
 						</div>
 					</div>
-					<Input onChange={onChange} value={value} />
+					<Input
+						onLocation={sendLocation}
+						onSend={submit}
+						onChange={onChange}
+						value={value}
+						handleFiles={handleFiles}
+						sendAudio={sendAudio}
+					/>
 				</div>
 			</form>
 		</div>

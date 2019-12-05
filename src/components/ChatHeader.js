@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styles from '../styles/headerStyles.module.css';
-import backButton from '../assets/back.png';
-import optionsButton from '../assets/options.png';
+import styles from '../styles/headerStyles.module.scss';
+import backButton from '../assets/back.svg';
+import optionsButton from '../assets/options.svg';
 
 export default function ChatHeader(props) {
 	const { avatar, name, status } = props;

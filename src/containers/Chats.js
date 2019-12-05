@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
-import chatsStyles from '../styles/chatsStyles.module.css';
+import chatsStyles from '../styles/chatsStyles.module.scss';
 import SingleChat from '../components/SingleChat';
 import chatStorage from '../constants/chatStorage';
 import ChatListHeader from '../components/ChatListHeader';
-import createConversationButton from '../assets/create_conversation.png';
+import createConversationButton from '../assets/create.svg';
 
 export default function Chats() {
 	const [chats, updateChats] = useState(getDefaultState());
