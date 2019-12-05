@@ -88,10 +88,9 @@ export default function Input(props) {
 					className={inputStyles.input}
 					type="file"
 					ref={fileInput}
-					id="fileInput"
 					multiple
 					accept="image/*"
-					style={{ display: 'none' }}
+					style={{ display: 'none', }}
 					onChange={handle}
 				/>
 				<input
