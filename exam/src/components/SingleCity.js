@@ -12,7 +12,6 @@ export default function SingleChat(props) {
 	let [temp, setTemp] = useState('');
 	let [wind, setWind] = useState('');
 	let [iconUrl, setIconUrl] = useState('');
-	let [pressure, setPressure] = useState('');
 	let [humidity, setHumidity] = useState('');
 
 	const key = '631984fd2bbdc7929248cde4bf5c1478';

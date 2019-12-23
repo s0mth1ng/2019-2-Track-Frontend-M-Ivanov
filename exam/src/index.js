@@ -17,7 +17,7 @@ render(
 			<Route exact path="/">
 				<CityList />
 			</Route>
-			<Route exact path="/city/:cityId">
+			<Route exact path="/city/:id">
 				<City/>
 			</Route>
 		</Switch>
