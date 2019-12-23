@@ -1,0 +1,23 @@
+.main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.citiesContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 92vh;
+	margin-top: 10vh;
+	overflow-y: auto;
+	animation-name: slideLeft;
+	animation-duration: 0.6s;
+}
