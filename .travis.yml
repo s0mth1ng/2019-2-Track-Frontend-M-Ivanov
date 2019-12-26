@@ -6,7 +6,7 @@ cache:
     - node_modules
 script:
   - npm run build
-before_script: cd exam
+before_install: cd exam
 deploy:
   provider: pages
   skip_cleanup: true
