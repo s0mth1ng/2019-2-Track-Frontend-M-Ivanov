@@ -16,5 +16,3 @@ deploy:
   on:
     branch:
       - exam
-      - master
-      - devel
