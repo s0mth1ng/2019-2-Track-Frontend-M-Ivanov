@@ -1,3 +1,40 @@
 .container {
-	padding-top: 10vh;
+	margin-top: 10vh;
+	padding-right: 4vw;
+	padding-left: 4vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 90vh;
+}
+
+.now {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.forecast {
+	height: 50vh;
+}
+
+.status {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.temp {
+	font-size: 6vh;
+	color: rgb(66, 165, 244);
+}
+
+.description {
+	font-size: 3vh;
+	color: rgb(114, 114, 114);
+}
+
+.now img {
+	width: 10vh;
+	height: auto;
 }

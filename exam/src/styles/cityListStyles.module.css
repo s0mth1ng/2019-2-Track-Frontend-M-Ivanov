@@ -16,8 +16,26 @@
 	flex-direction: row;
 	justify-content: space-around;
 	height: 92vh;
-	margin-top: 10vh;
+	margin-top: 7vh;
 	overflow-y: auto;
-	animation-name: slideLeft;
-	animation-duration: 0.6s;
+}
+
+
+.create img {
+  height: 100%;
+  width: 100%;
+}
+
+.create {
+  height: 7vh;
+  width: 7vh;
+  display: flex;
+  align-items: center;
+  background-color: rgb(66, 165, 245);
+  padding: 1vh;
+  position: fixed;
+  right: 5vw;
+  bottom: 5vh;
+  border-radius: 50%;
+  justify-content: center;
 }

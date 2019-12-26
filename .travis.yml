@@ -7,7 +7,7 @@ cache:
 script:
   - npm run test
   - npm run build
-
+before_script: cd exam
 deploy:
   provider: pages
   skip_cleanup: true
@@ -15,6 +15,6 @@ deploy:
   local_dir: build
   on:
     branch:
-      - hw7
+      - exam
       - master
       - devel

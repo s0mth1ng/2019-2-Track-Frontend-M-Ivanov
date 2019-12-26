@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8vh;
+  width: 100%;
+  color: rgb(66, 165, 244);
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+TextField {
+  width: 80%;
+}
+
+.title {
+  font-size: 3vh;
+  color: rgb(66, 165, 244);
+  margin-bottom: 1vh;
+}
