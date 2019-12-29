@@ -15,8 +15,7 @@
 	width: 100%;
 	flex-direction: row;
 	justify-content: space-around;
-	height: 92vh;
-	margin-top: 7vh;
+	margin-top: 40px;
 	overflow-y: auto;
 }
 
@@ -27,15 +26,15 @@
 }
 
 .create {
-  height: 7vh;
-  width: 7vh;
+  height: 50px;
+  width: 50px;
   display: flex;
   align-items: center;
   background-color: rgb(66, 165, 245);
-  padding: 1vh;
+  padding: 5px;
   position: fixed;
-  right: 5vw;
-  bottom: 5vh;
+  right: 40px;
+  bottom: 50px;
   border-radius: 50%;
   justify-content: center;
 }

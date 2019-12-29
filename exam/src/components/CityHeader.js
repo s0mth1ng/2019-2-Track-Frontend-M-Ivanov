@@ -14,9 +14,11 @@ export default function CityHeader(props) {
 				<img src={backButton} alt="Back button" />
 			</Link>
 			<div className={styles.info}>
-					<div className={styles.name}>{name}</div>
+				<div className={styles.name}>{name}</div>
 			</div>
-			<img src={optionsButton} alt="Options button" />
+			<div className={`options-button ${styles.button}`}>
+				<img src={optionsButton} alt="Options button" />
+			</div>
 		</div>
 	);
 }

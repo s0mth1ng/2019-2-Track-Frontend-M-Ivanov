@@ -22,13 +22,16 @@ export default function AddCity() {
 
 		const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}`;
 		fetch(url)
-			.then(function(resp) {
+			.then(function (resp) {
 				return resp.json();
 			})
-			.then(function(data) {
+			.then(function (data) {
+				if (data.id == null) {
+					throw new Error("invalid data");
+				}
 				if (cities.includes(data.id)) {
 					alert('You have already added this city');
-					return;
+					throw new Error("already added");
 				}
 				cities.push(data.id);
 				localStorage.setItem('cities', JSON.stringify(cities));
@@ -36,7 +39,7 @@ export default function AddCity() {
 			})
 			.catch((e) => {
 				console.log(e);
-				alert('Error!');
+				alert(e.message);
 			});
 	}
 
@@ -48,13 +51,16 @@ export default function AddCity() {
 
 		const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}`;
 		fetch(url)
-			.then(function(resp) {
+			.then(function (resp) {
 				return resp.json();
 			})
-			.then(function(data) {
+			.then(function (data) {
+				if (data.id == null) {
+					throw new Error("invalid data");
+				}
 				if (cities.includes(data.id)) {
 					alert('You have already added this city');
-					return;
+					throw new Error("already added");
 				}
 				cities.push(data.id);
 				localStorage.setItem('cities', JSON.stringify(cities));
@@ -62,7 +68,7 @@ export default function AddCity() {
 			})
 			.catch((e) => {
 				console.log(e);
-				alert('Error!');
+				alert(e);
 			});
 	}
 
@@ -74,13 +80,16 @@ export default function AddCity() {
 
 		const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${key}`;
 		fetch(url)
-			.then(function(resp) {
+			.then(function (resp) {
 				return resp.json();
 			})
-			.then(function(data) {
+			.then(function (data) {
+				if (data.id == null) {
+					throw new Error("invalid data");
+				}
 				if (cities.includes(data.id)) {
 					alert('You have already added this city');
-					return;
+					throw new Error("already added");
 				}
 				cities.push(data.id);
 				localStorage.setItem('cities', JSON.stringify(cities));
@@ -88,7 +97,7 @@ export default function AddCity() {
 			})
 			.catch((e) => {
 				console.log(e);
-				alert('Error!');
+				alert(e);
 			});
 	}
 
@@ -105,71 +114,73 @@ export default function AddCity() {
 					<img src={optionsButton} alt="Done button" />
 				</div>
 			</div>
-			<form className={addCityStyles.form} onSubmit={saveViaName}>
-				<div className={addCityStyles.title}>Via city's name</div>
-				<div className={addCityStyles.input}>
-					<TextField
-						value={cityName}
-						onChange={(e) => setCityName(e.target.value)}
-						label="City"
-						variant="outlined"
-					/>
-				</div>
-				<Button
-					color="primary"
-					onClick={saveViaName}
-					variant="contained"
-					size="large"
-				>
-					Add
+			<div className={addCityStyles.container}>
+				<form className={addCityStyles.form} onSubmit={saveViaName}>
+					<div className={addCityStyles.title}>Via city's name</div>
+					<div className={addCityStyles.input}>
+						<TextField
+							value={cityName}
+							onChange={(e) => setCityName(e.target.value)}
+							label="City"
+							variant="outlined"
+						/>
+					</div>
+					<Button
+						color="primary"
+						onClick={saveViaName}
+						variant="contained"
+						size="large"
+					>
+						Add
 				</Button>
-			</form>
-			<form className={addCityStyles.form} onSubmit={saveViaPosition}>
-				<div className={addCityStyles.title}>Via longitude and latitude</div>
-				<div className={addCityStyles.input}>
-					<TextField
-						value={long}
-						onChange={(e) => setLong(e.target.value)}
-						label="Longitude"
-						variant="outlined"
-					/>
-				</div>
-				<div className={addCityStyles.input}>
-					<TextField
-						value={lat}
-						onChange={(e) => setLat(e.target.value)}
-						label="Latitude"
-						variant="outlined"
-					/>
-				</div>
-				<Button
-					color="primary"
-					onClick={saveViaPosition}
-					variant="contained"
-					size="large"
-				>
-					Add
+				</form>
+				<form className={addCityStyles.form} onSubmit={saveViaPosition}>
+					<div className={addCityStyles.title}>Via longitude and latitude</div>
+					<div className={addCityStyles.input}>
+						<TextField
+							value={long}
+							onChange={(e) => setLong(e.target.value)}
+							label="Longitude"
+							variant="outlined"
+						/>
+					</div>
+					<div className={addCityStyles.input}>
+						<TextField
+							value={lat}
+							onChange={(e) => setLat(e.target.value)}
+							label="Latitude"
+							variant="outlined"
+						/>
+					</div>
+					<Button
+						color="primary"
+						onClick={saveViaPosition}
+						variant="contained"
+						size="large"
+					>
+						Add
 				</Button>
-			</form>
-			<form className={addCityStyles.form} onSubmit={saveViaId}>
-				<div className={addCityStyles.title}>Via city's id</div>
-				<div className={addCityStyles.input}>
-					<TextField
-						value={cityId}
-						onChange={(e) => setCityId(e.target.value)}
-						label="Id"
-						variant="outlined"
-					/>
-				</div>
-				<Button
-					color="primary"
-					onClick={saveViaId}
-					variant="contained"
-					size="large"
-				>
-					Add
+				</form>
+				<form className={addCityStyles.form} onSubmit={saveViaId}>
+					<div className={addCityStyles.title}>Via city's id</div>
+					<div className={addCityStyles.input}>
+						<TextField
+							value={cityId}
+							onChange={(e) => setCityId(e.target.value)}
+							label="Id"
+							variant="outlined"
+						/>
+					</div>
+					<Button
+						color="primary"
+						onClick={saveViaId}
+						variant="contained"
+						size="large"
+					>
+						Add
 				</Button>
-			</form>
+				</form>
+			</div>
 		</div>
 	);
 }

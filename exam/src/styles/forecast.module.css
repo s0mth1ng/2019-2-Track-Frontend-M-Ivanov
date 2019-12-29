@@ -1,4 +1,27 @@
 .container {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  color: rgb(114, 114, 114);
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.temp {
+  font-size: 2em;
+  color: rgb(66, 165, 244);
 }
