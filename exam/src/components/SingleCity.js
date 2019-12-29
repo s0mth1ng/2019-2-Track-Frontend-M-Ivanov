@@ -9,12 +9,12 @@ export default function SingleCity(props) {
 	const { id } = props;
 	const url = `https://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${key}`;
 
-	let [temp, setTemp] = useState(props.temp);
-	let [wind, setWind] = useState(props.wind);
-	let [iconUrl, setIconUrl] = useState(props.iconUrl);
-	let [humidity, setHumidity] = useState(props.humidity);
-	let [city, setCity] = useState(props.city);
-	let [country, setCountry] = useState(props.country);
+	const [temp, setTemp] = useState(props.temp);
+	const [wind, setWind] = useState(props.wind);
+	const [iconUrl, setIconUrl] = useState(props.iconUrl);
+	const [humidity, setHumidity] = useState(props.humidity);
+	const [city, setCity] = useState(props.city);
+	const [country, setCountry] = useState(props.country);
 
 	useEffect(() => {
 		async function fetchData() {

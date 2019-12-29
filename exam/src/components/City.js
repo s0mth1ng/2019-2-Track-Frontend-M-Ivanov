@@ -15,30 +15,6 @@ export default function City(props) {
 
 	const url = `https://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${key}`;
 
-	// fetch(url)
-	// 	.then(function (resp) {
-	// 		return resp.json();
-	// 	})
-	// 	.then(function (data) {
-	// 		if (data.cod !== '200') {
-	// 			throw new Error("Invalid data");
-	// 		}
-
-	// 		setName(data.city.name);
-	// 		setNowTemp(`${Math.round(data.list[0].main.temp - 273)} °C`);
-	// 		setNowDescription(data.list[0].weather[0].main);
-	// 		setItems(data.list.map((item, idx) => <ForecastItem
-	// 			key={idx}
-	// 			icon={`http://openweathermap.org/img/wn/${item.weather.icon}@2x.png`}
-	// 			time={item.dt_txt}
-	// 			description={item.weather.description}
-	// 			temp={`${Math.round(item.main.temp - 273)} °C`} />));
-	// 	})
-	// 	.catch((e) => {
-	// 		console.log(e);
-	// 		alert(e.message);
-	// 	});
-
 	function getTime(time_txt) {
 		const date = new Date(Date.parse(time_txt));
 		const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];

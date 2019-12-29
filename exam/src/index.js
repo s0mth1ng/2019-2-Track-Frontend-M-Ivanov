@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.css';
 import { render } from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import CityList from './components/CityList';
@@ -9,8 +8,6 @@ import City from './components/City';
 import AddCity from './components/AddCity';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './styles/globalStyles.module.css';
-
-// ReactDOM.render(<App />, document.getElementById('root'));
 
 export const history = createBrowserHistory();
 
