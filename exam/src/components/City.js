@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import CityHeader from './CityHeader';
 import cityStyles from '../styles/cityStyles.module.css';
 import ForecastItem from './ForecastItem';
+import {key} from '../openweather/api';
 
 export default function City(props) {
 	let { id } = useParams();
@@ -11,7 +12,6 @@ export default function City(props) {
 	let [nowDescription, setNowDescription] = useState();
 	let [items, setItems] = useState([]);
 
-	const key = '631984fd2bbdc7929248cde4bf5c1478';
 	const url = `https://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${key}`;
 
 	fetch(url)

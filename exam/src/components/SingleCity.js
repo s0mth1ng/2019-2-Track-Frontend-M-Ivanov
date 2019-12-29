@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import singleCityStyles from '../styles/singleCityStyles.module.css';
+import {key} from '../openweather/api';
 
 export default function SingleCity(props) {
 	const { id } = props;
-	const key = '631984fd2bbdc7929248cde4bf5c1478';
 	const url = `https://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${key}`;
 
 	let [temp, setTemp] = useState(props.temp);

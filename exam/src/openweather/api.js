@@ -1,0 +1,1 @@
+export const key = '631984fd2bbdc7929248cde4bf5c1478';

@@ -5,6 +5,7 @@ import backButton from '../assets/back.svg';
 import { TextField, Button } from '@material-ui/core';
 import addCityStyles from '../styles/addCityStyles.module.css';
 import optionsButton from '../assets/options.svg';
+import {key} from '../openweather/api';
 
 export default function AddCity() {
 	const [cityName, setCityName] = useState('');
@@ -12,7 +13,6 @@ export default function AddCity() {
 	const [lat, setLat] = useState('');
 	const [cityId, setCityId] = useState('');
 	const cities = JSON.parse(localStorage.getItem('cities')) || [];
-	const key = '631984fd2bbdc7929248cde4bf5c1478';
 
 	function saveViaName(e) {
 		e.preventDefault();
