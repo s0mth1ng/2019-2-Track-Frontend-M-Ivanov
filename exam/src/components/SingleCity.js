@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import singleCityStyles from '../styles/singleCityStyles.module.css';
-import {key} from '../openweather/api';
+import { key } from '../openweather/api';
 
 export default function SingleCity(props) {
 	const { id } = props;
@@ -15,11 +16,10 @@ export default function SingleCity(props) {
 	let [city, setCity] = useState(props.city);
 	let [country, setCountry] = useState(props.country);
 
-	fetch(url)
-		.then(function(resp) {
-			return resp.json();
-		})
-		.then(function(data) {
+	useEffect(() => {
+		async function fetchData() {
+			const result = await axios(url);
+			const data = result.data;
 			const temp = Math.round(data.main.temp - 273);
 			setTemp(`${temp} °C`);
 
@@ -37,10 +37,11 @@ export default function SingleCity(props) {
 
 			const country = data.sys.country;
 			setCountry(country);
-		})
-		.catch((e) => {
-			console.log(e);
-		});
+		}
+
+		fetchData();
+	}, [url]);
+
 
 	return (
 		<Link to={`/city/${id}`} className={singleCityStyles.container}>
@@ -50,7 +51,7 @@ export default function SingleCity(props) {
 					<div className={singleCityStyles.country}>{country}</div>
 				</div>
 				<div className={singleCityStyles.temp}>
-					<img src={iconUrl} alt="Icon"/>
+					<img src={iconUrl} alt="Icon" />
 					<div>{temp}</div>
 				</div>
 			</div>
