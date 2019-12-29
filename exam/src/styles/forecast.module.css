@@ -17,11 +17,12 @@
 
 .label {
   color: rgb(114, 114, 114);
-  font-size: 1em;
+  font-size: 1.2em;
   margin-right: 10px;
 }
 
 .temp {
-  font-size: 2em;
+  font-size: 1.5em;
+  font-weight: 700;
   color: rgb(66, 165, 244);
 }
