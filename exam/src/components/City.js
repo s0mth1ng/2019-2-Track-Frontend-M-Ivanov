@@ -39,8 +39,8 @@ export default function City(props) {
 	// 		alert(e.message);
 	// 	});
 
-	function getTime(ms) {
-		const date = new Date(ms);
+	function getTime(time_txt) {
+		const date = new Date(Date.parse(time_txt));
 		const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		return `${weekdays[date.getDay()]}`;
 	}
@@ -60,7 +60,7 @@ export default function City(props) {
 			setItems(items.map((item, idx) => <ForecastItem
 				key={idx}
 				icon={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
-				time={getTime(item.dt * 60000)}
+				time={getTime(item.dt_txt)}
 				description={item.weather[0].description}
 				temp={`${Math.round(item.main.temp - 273)} °C`} />));
 		}
